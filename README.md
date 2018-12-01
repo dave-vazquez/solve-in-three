@@ -8,5 +8,5 @@ Inspired by Numberphile's video which featured this puzzle: https://www.youtube.
 </br>
 </br>
 
-![Solve-In-Threet](https://imgur.com/a/wlH5GsW)
+![Solve-In-Three](https://imgur.com/a/wlH5GsW)
 
