@@ -1,0 +1,21 @@
+{
+  "name": "solve-in-three",
+  "version": "1.0.0",
+  "description": "Dudeny's Solve in Three",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "author": "David M. Vazquez",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "jquery-shadow-animation": "^1.10.0",
+    "jquery-ui": "^1.12.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
+  }
+}

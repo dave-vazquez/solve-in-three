@@ -1,0 +1,25 @@
+/* ******************************************************************* */
+/*                           MISC.                                     */
+/* ******************************************************************* */
+
+.margin-left-180px
+{
+    margin-left: 180px;
+}
+
+.margin-left-120px
+{
+    margin-left: 120px;
+}
+
+.margin-left-60px
+{
+    margin-left: 60px;
+}
+
+.clear-fix:after
+{
+    content: "";
+    display: table;
+    clear: both;
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+	<title>Shadow animation jQuery plugin</title>
+	<link title="Main" rel="stylesheet" type="text/css" href="../home.css">
+	<link href="demo.css" rel="stylesheet">
+</head>
+<body>
+<h1>Shadow animation jQuery plugin</h1>
+
+<div id="body">
+
+	<p class="crumbtrail"><a href="/">Bitstorm.org</a> &gt; <a href="../">jQuery plugins</a> &gt; <a href="./">Shadow animation</a> &gt; Shadow animation tests</p>
+
+
+	<h2>Animate box shadows test page</h2>
+
+	<p>Two extra boxes with animated shadows, just for testing.</p>
+
+	<h2>Example</h2>
+
+	<p>Change the shadow to a centered 30-pixel blur with no opacity:</p>
+
+	<code>
+		$('#box1').animate({boxShadow: '0 0 30px rgba(64, 64, 255, 0)'});
+	</code>
+
+	<h2>Demo</h2>
+
+	<p>The first box tests the alpha channel, the second box tests negative pixel values.</p>
+
+	<div id="test1" onmouseover="$('#test1').stop().animate({boxShadow: '0 0 30px rgba(64,64,255,0)'})" onmouseout="$('#test1').stop().animate({boxShadow: '0 0 30px rgba(64,64,255,1)'})">mouse over</div>
+
+	<div id="test2" onmouseover="$('#test2').stop().animate({boxShadow: '-10px -10px 15px'}, 'fast')" onmouseout="$('#test2').stop().animate({boxShadow: '10px 10px 15px'}, 'fast')">mouse over</div>
+
+    <p>Boxes to test floating point alpha values.</p>
+
+    <div id="test3" onmouseover="$('#test3').stop().animate({boxShadow: '0 0 30px rgba(64,64,255,0)'})" onmouseout="$('#test3').stop().animate({boxShadow: '0 0 30px rgba(64,64,255,0.5)'})">mouse over</div>
+
+    <div id="test4" onmouseover="$('#test4').stop().animate({boxShadow: '0 0 30px rgba(64,64,255,0.5)'})" onmouseout="$('#test4').stop().animate({boxShadow: '0 0 30px rgba(64,64,255,1)'})">mouse over</div>
+
+    <br style="clear: both">
+
+</div>
+
+<address><a href="/">Edwin Martin</a> &lt;<a href="mailto:edwin@bitstorm.org">edwin@bitstorm.org</a>&gt;</address>
+
+<script src="../jquery-1.8.0.min.js"></script>
+<script src="jquery.animate-shadow-min.js"></script>
+
+</body>
+</html>
