@@ -5,4 +5,8 @@ A coin-puzzle game where you are challenged to arrange a set of six coins into t
   Rule 2) You cannot move a coin if it is surrounded by other coins.</br>
 </br>
 Inspired by Numberphile's video which featured this puzzle: https://www.youtube.com/embed/_pP_C7HEy3g"
+</br>
+</br>
+
+![Solve-In-Threet](https://imgur.com/a/wlH5GsW)
 
