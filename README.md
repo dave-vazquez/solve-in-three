@@ -8,6 +8,6 @@ A puzzle-game where you're challenged to arrange a set of six coins into a hexag
 </br>
 Inspired by a Numberphile video featuring this puzzle: https://www.youtube.com/embed/_pP_C7HEy3g"
 </br>
-</br>
+
 ![Solve-In-Three](solve-in-three.gif)
 
