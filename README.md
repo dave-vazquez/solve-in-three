@@ -11,4 +11,3 @@ Inspired by a Numberphile video featuring this puzzle: https://www.youtube.com/e
 
 ![Solve-In-Three](solve-in-three.gif)
 
-A work in progress.
