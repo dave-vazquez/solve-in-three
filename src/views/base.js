@@ -19,6 +19,7 @@ export const elements =
     moveBlock: id => document.getElementById(`move${id}`),
     allMoveBlocks: document.querySelectorAll('.move-block'),
     moveCount: document.getElementById('move-count'),
+    moveLabel: document.getElementById('move-label'),
 
     attempts: document.getElementById('attempts'),
 
@@ -31,6 +32,11 @@ export const elements =
     progressMessageContainer: document.getElementById('progress-message-container'),
     progressMessage1: document.getElementById('progress-message-1'),
     progressMessage2: document.getElementById('progress-message-2'),
+    stat1: document.getElementById('stat-1'),
+    stat2: document.getElementById('stat-2'),
+    stat3: document.getElementById('stat-3'),
+
+    continueButton: document.getElementById('continue-button'),
 
     redListItemGoals: document.querySelectorAll('#red-star-goals > li'),
     redStarImg: document.getElementById('red-star-img'),
@@ -53,6 +59,3 @@ export const elements =
         this.allCoins = document.querySelectorAll('.coin');
     }
 };
-
-
-
