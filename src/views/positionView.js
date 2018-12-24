@@ -1,4 +1,17 @@
 /* *************************************************************************************************** */
+/*                                   POSITION VIEW                                                     */
+/* *************************************************************************************************** */
+
+/* *************************************************************************************************** */
+/*                                      IMPORTS                                                        */
+/* *************************************************************************************************** */
+
+import $ from 'jquery';
+import 'jquery-ui/ui/widgets/droppable';
+import 'jquery-shadow-animation/jquery.animate-shadow';
+import {elements} from './base.js';
+
+/* *************************************************************************************************** */
 /*                       EVENT LISTENERS                                                               */
 /* *************************************************************************************************** */
 
@@ -26,7 +39,7 @@ export const bindDroppable = position =>
 bindDroppable(elements.classPosition);
 
 /* *************************************************************************************************** */
-/*                       POSITION VIEW FUNCTIONS                                                       */
+/*                              FUNCTIONS                                                              */
 /* *************************************************************************************************** */
 
 export const dropEnabled = (toggle, posID) =>
@@ -49,24 +62,13 @@ export const positionBeveled = (toggle, posID) =>
 
     if(toggle)
     {
-        $(position).stop().animate({boxShadow: 'inset 5px 5px 10px #818181'}, 100);
+        $(position).stop().animate({boxShadow: 'inset 4px 4px 8px rgba(0, 0, 0, 0.33)', backgroundColor: '#c2c2c2'}, 100);
         position.style['border'] = '1px solid #666666';
-        position.style['background-color'] = '#c2c2c2';
     }
     else
     {
-        $(position).stop().animate({boxShadow: 'inset 0px 0px 0px #818181'}, 100);
+        $(position).stop().animate({boxShadow: 'inset 0px 0px 0px rgba(0, 0, 0, 0.33)', backgroundColor: '#d1d1d1'}, 100);
         position.style['border'] = '1px solid #919191';
-        position.style['background-color'] = '#d1d1d1';
     }
 }
-
-/* *************************************************************************************************** */
-/*                       IMPORTS                                                                       */
-/* *************************************************************************************************** */
-
-import $ from 'jquery';
-import 'jquery-ui/ui/widgets/droppable';
-import 'jquery-shadow-animation/jquery.animate-shadow';
-import {elements} from './base.js';
 
