@@ -1,4 +1,12 @@
 /* *************************************************************************************************** */
+/*                       IMPORTS                                                                       */
+/* *************************************************************************************************** */
+
+import {board} from './GameController.js';
+import Coin from '../models/Coin.js';
+import * as positionView from '../views/positionView.js';
+
+/* *************************************************************************************************** */
 /*                       POSITION CONTROLLER                                                           */
 /* *************************************************************************************************** */
 
@@ -22,8 +30,6 @@ export default class PositionController
     enableOpenPositions()
     {
         this.openPositionIDs = board.getOpenPositions();
-
-        console.log(this.openPositionIDs);
 
         this.openPositionIDs.forEach(posID => positionView.dropEnabled(true, posID));
     }
@@ -49,10 +55,3 @@ export default class PositionController
     }
 }
 
-/* *************************************************************************************************** */
-/*                       IMPORTS                                                                       */
-/* *************************************************************************************************** */
-
-import {board} from './GameController.js';
-import Coin from '../models/Coin.js';
-import * as positionView from '../views/positionView.js';
