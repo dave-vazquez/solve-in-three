@@ -43,8 +43,6 @@ export const destroy = () =>
     document.cookie = `totalSeconds=; ${expires}`;
 }
 
-
-
 /* **************************************** */
 export const delayReplay = days =>
 {
