@@ -1,6 +1,18 @@
+/* *************************************************************************************************** */
+/*                                      TIMER VIEW                                                     */
+/* *************************************************************************************************** */
+
+/* *************************************************************************************************** */
+/*                                        IMPORTS                                                      */
+/* *************************************************************************************************** */
+
 import $ from 'jquery';
 import {elements} from './base.js';
 import * as cookie from '../controllers/cookieController.js';
+
+/* *************************************************************************************************** */
+/*                                        FUNCTIONS                                                    */
+/* *************************************************************************************************** */
 
 let minutes, seconds, totalSeconds, timerInterval;
 
@@ -15,12 +27,12 @@ export const startTimer = ()=>
     {
         totalSeconds++;
 
-        console.log(totalSeconds);
+        //console.log(totalSeconds);
         
         minutes = parseInt((totalSeconds / 60));
         seconds = parseInt((totalSeconds % 60));
 
-        console.log('Minutes: ', minutes, 'Seconds:', seconds);
+        //console.log('Minutes: ', minutes, 'Seconds:', seconds);
 
         updateTimer();
 
@@ -51,3 +63,16 @@ export const setTime = (min, sec, totalSec) =>
 }
 
 export const getTime = () => {minutes, seconds, totalSeconds};
+
+export const resetTime = () =>
+{
+    minutes = 0;
+    seconds = 0;
+    totalSeconds = 0;
+
+    cookie.set('minutes', minutes.toString());
+    cookie.set('seconds', seconds.toString());
+
+    elements.timerMinutes.innerText = '0';
+    elements.timerSeconds.innerText = ':00';
+};
