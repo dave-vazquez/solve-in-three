@@ -1,8 +1,21 @@
 /* *************************************************************************************************** */
-/*                       EVENT LISTENERS                                                               */
+/*                           COIN VIEW                                                                 */
 /* *************************************************************************************************** */
 
-$//('.splash-message-1').draggable();
+/* *************************************************************************************************** */
+/*                            IMPORTS                                                                  */
+/* *************************************************************************************************** */
+
+import $ from 'jquery';
+import 'jquery-ui/ui/widgets/draggable';
+import 'jquery-ui/ui/effects/effect-highlight';
+import 'jquery-ui/ui/effects/effect-shake';
+import 'jquery-shadow-animation/jquery.animate-shadow';
+import {elements} from './base.js'
+
+/* *************************************************************************************************** */
+/*                       EVENT LISTENERS                                                               */
+/* *************************************************************************************************** */
 
 export const bindDraggable = coin =>
 {   
@@ -11,8 +24,6 @@ export const bindDraggable = coin =>
     $(coin).on('mousedown', function()
     {    
         $(this).stop(true, true); // stops all animations on coin
-        
-        this.style.zIndex = 1;
 
         document.dispatchEvent(new CustomEvent('coin-selected', 
         {
@@ -27,7 +38,6 @@ export const bindDraggable = coin =>
 
     $(coin).on('mouseup', function() 
     { 
-        this.style.zIndex = 0;
         document.dispatchEvent(new Event('coin-released'));
     });
 
@@ -40,19 +50,52 @@ export const bindDraggable = coin =>
 bindDraggable((elements.classCoin));
 
 /* *************************************************************************************************** */
-/*                       COIN VIEW FUNCTIONS                                                           */
+/*                                 FUNCTIONS                                                           */
 /* *************************************************************************************************** */
+
+export const raiseZIndex = coinID =>
+{
+    elements.allCoins.forEach(coin => coin.style.zIndex = 0); 
+
+    elements.coin(coinID).style.zIndex = 1;
+}
+
+export const dropZIndex = coinID =>
+{
+    elements.coin(coinID).style.zIndex = 0;
+}
+
+export const elevateCoin = (toggle, coinID) =>
+{
+    var coin = elements.coin(coinID);
+    
+    if(toggle)
+    {
+        $(coin).animate({marginLeft: '-4px', marginTop: '-4px'}, {duration: 100, queue: false});
+        $(coin).animate({boxShadow: '5px 5px 8px rgba(0, 0, 0, 0.33)'}, {duration: 100, queue: false});
+    }
+    else
+    {
+        $(coin).animate({marginLeft: '-2px', marginTop: '-2px'}, {duration: 100, queue: false});
+        $(coin).animate({boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.33)'}, {duration: 100, queue: false});
+    }
+}
 
 export const dragEnabled = (toggle, coinID) =>
 {
     var coin = elements.coin(coinID);
 
-    if(toggle === false)
-    {
-        $(coin).on('drag', () => toggle);  // when do I disbale this thing?
-    }
-    else
+    if(toggle === true)
         $(coin).draggable('enable');
+    else
+        $(coin).draggable('disable');
+}
+
+export const release = coinID =>
+{
+    var coin = elements.coin(coinID);
+
+    $(coin).trigger('mouseup');
 }
 
 export const highlightCoin = coinID =>
@@ -96,13 +139,3 @@ function parseID(id)
 {
     return parseInt(id.match(/\d+/)[0]);
 }
-
-/* *************************************************************************************************** */
-/*                       IMPORTS                                                                       */
-/* *************************************************************************************************** */
-
-import $ from 'jquery';
-import 'jquery-ui/ui/widgets/draggable';
-import 'jquery-ui/ui/effects/effect-highlight';
-import 'jquery-ui/ui/effects/effect-shake';
-import {elements} from './base.js'
