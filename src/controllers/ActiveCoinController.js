@@ -1,4 +1,11 @@
 /* *************************************************************************************************** */
+/*                       IMPORTS                                                                       */
+/* *************************************************************************************************** */
+
+import {board} from './GameController.js';
+import * as coinView from '../views/coinView.js';
+
+/* *************************************************************************************************** */
 /*                       ACTIVE COIN CONTROLLER                                                        */
 /* *************************************************************************************************** */
 
@@ -15,6 +22,8 @@ export default class ActiveCoinController
 
         this.moved = false;
         this.dropped = false;
+
+        this.isActive = false;
     }
 
     initialize({id, origin})
@@ -30,16 +39,22 @@ export default class ActiveCoinController
         
         this.moved = false;
         this.dropped = false;
+
+        coinView.raiseZIndex(this.id);
+        coinView.elevateCoin(true, this.id);
+
+        this.isActive = true;
     }
 
-    disableDrag()
+    dropCoin()
     {
-        coinView.dragEnabled(false, this.id);
+        coinView.elevateCoin(false, this.id);
     }
 
-    enableDrag()
+    release()
     {
-        coinView.dragEnabled(true, this.id);
+        coinView.release(this.id);
+        coinView.dropZIndex(this.id);
     }
 
     isOver(posID)
@@ -47,7 +62,7 @@ export default class ActiveCoinController
         this.lastPositionOver = posID;
     }
 
-    overOrigin()
+    returnedToOrigin()
     {
         return this.lastPositionOver === this.origin;
     }
@@ -67,15 +82,10 @@ export default class ActiveCoinController
         coinView.snapCoinTo(posID, this.id);
     }
 
-    highlightBlockingCoins()
+    highlightSurroundingCoins()
     {
         this.blockingCoinIDs.forEach(coinID => coinView.highlightCoin(coinID));
     }
 }
-/* *************************************************************************************************** */
-/*                       IMPORTS                                                                       */
-/* *************************************************************************************************** */
 
-import {board} from './GameController.js';
-import * as coinView from '../views/coinView.js';
 
