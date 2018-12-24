@@ -1,7 +1,16 @@
+/* *************************************************************************************************** */
+/*                           GAME STATE                                                                */
+/* *************************************************************************************************** */
+
 export default class GameState
 {
     constructor()
     {     
+        this.init();
+    }
+
+    init()
+    {
         this.moves = 0;
         this.hintsEnabled = false;
 
@@ -16,13 +25,21 @@ export default class GameState
         }
 
         this.timerStarted = false;
+        this.roundStarted = false;
 
         this.solvedInThree = false;
-    };
+    }
 
     reset()
     {
         this.moves = 0;
         this.hintsEnabled = false;
+
+        this.roundStarted = false;
+    }
+
+    resetAll()
+    {
+        this.init();
     }
 }
