@@ -1,4 +1,23 @@
 /* *************************************************************************************************** */
+/*                       IMPORTS                                                                       */
+/* *************************************************************************************************** */
+
+import GameController from './controllers/GameController.js';
+import PositionController from './controllers/PositionController.js';
+import ActiveCoinController from './controllers/ActiveCoinController.js';
+
+import GameState from './states/GameState.js';
+
+import * as messageBoxView from './views/messageBoxView.js';
+import * as movesView from './views/movesView.js';
+import * as attemptsView from './views/attemptsView.js';
+import * as hintButtonView from './views/hintButtonView.js';
+import * as progressView from './views/progressView.js'
+import * as timerView from './views/timerView.js';
+
+import $ from 'jquery';
+
+/* *************************************************************************************************** */
 /*                       INDEX.JS                                                                      */
 /* *************************************************************************************************** */
 
@@ -8,8 +27,6 @@ const activeCoin = new ActiveCoinController();
 
 export const gameState = new GameState();
 
-board.logBoardState();
-
 /* *************************************************************************************************** */
 /*                       EVENT LISTENERS                                                               */
 /* *************************************************************************************************** */
@@ -17,21 +34,24 @@ board.logBoardState();
 
 document.addEventListener('coin-selected', event =>
 {               
-    console.log('COIN-SELECTED');
-
-    if(gameState.timerStarted === false)
+    if(!gameState.roundStarted)
     {
-        timerView.startTimer();
-        gameState.timerStarted = true;
+        gameState.attempts++;
+        attemptsView.incrementAttempts(gameState.attempts);
+
+        gameState.roundStarted = true;
+
+        if(!gameState.timerStarted)
+            timerView.startTimer();
     }
 
     activeCoin.initialize(parseCoinData(event));
 
     if(activeCoin.isBlocked)
     {   
-        activeCoin.disableDrag();
-        //activeCoin.enableDrag();
-        activeCoin.highlightBlockingCoins();
+        activeCoin.release();
+
+        activeCoin.highlightSurroundingCoins();
         
         messageBoxView.showMessage('coin-blocked');
     }
@@ -44,43 +64,26 @@ document.addEventListener('coin-selected', event =>
             posCtrl.revealOpenPositions();
     }
 
-    board.logBoardState();
-
 });
 
-document.addEventListener('coin-moved', () =>
-{
-    console.log('COIN-MOVED');
-    activeCoin.moved = true;
-});
+document.addEventListener('coin-moved', () => activeCoin.moved = true);
 
 document.addEventListener('coin-over', event =>
 {
-    console.log('COIN-OVER', event.detail.posID);
-    
-    var openPosition = parseID(event.detail.posID);
+    var position = parseID(event.detail.posID);
 
-    activeCoin.isOver(openPosition);
+    activeCoin.isOver(position);
 });
 
 document.addEventListener('coin-released', () =>
 {
-    console.log('COIN-RELEASE');
+    activeCoin.dropCoin();
 
-    if(activeCoin.isBlocked)
-    {
-        console.log('   BLOCKED');
-        activeCoin.enableDrag();
-        posCtrl.disableOpenPositions();
-    }
-
-    else if(activeCoin.moved === false)
+    if(!activeCoin.moved)
     {
         posCtrl.addCoinTo(activeCoin.origin, activeCoin.id);
         posCtrl.disableOpenPositions();
     }
-
-    board.logBoardState();
 
     if(gameState.hintsEnabled) 
         posCtrl.concealOpenPositions();
@@ -88,91 +91,75 @@ document.addEventListener('coin-released', () =>
 
 document.addEventListener('coin-reverted', () =>
 {
-    console.log('COIN-REVERTED');
-    if(activeCoin.dropped === false) 
+    if(!activeCoin.dropped) 
     {
-        console.log('REVERTED ADD');
         posCtrl.addCoinTo(activeCoin.origin, activeCoin.id);
         posCtrl.disableOpenPositions();
 
         messageBoxView.showMessage('coin-reverted');
-
-        board.logBoardState();
     }
 });
 
 document.addEventListener('coin-dropped', event =>
-{
-    console.log('   COIN-DROP ADD');
-
+{    
     var dropPosition = parseID(event.detail.posID);
     
     activeCoin.snapCoinTo(dropPosition);
+    activeCoin.dropped = true;
 
     posCtrl.addCoinTo(dropPosition, activeCoin.id);
     posCtrl.disablePosition(dropPosition);
+    posCtrl.disableOpenPositions();
 
-    if(!activeCoin.overOrigin())
+    if(!activeCoin.returnedToOrigin())
     {
         gameState.moves++;
-        gameState.totalMoves++;
         movesView.incrementMoves(gameState.moves);
     }
 
-    board.logBoardState();
-
     if(gameCtrl.solutionFound())
     {
-        gameState.attempts += 1;
-
-        // disable everything in game-container
-        
-        // This will disable everything contained in the div
-        // $("game-container").children().prop('disabled',true);
+        if(gameState.moves === 3)
+            gameState.solvedInThree = true;
         
         gameState.currentTime = timerView.stopTimer();
 
         progressView.displayProgress();
     }
 
-    if(gameState.solvedInThree)
-    {
-        //alert('GAME OVER');
-        gameState.currentTime = timerView.stopTimer();
-    }
-    else
-    {
-        activeCoin.dropped = true;
-        posCtrl.disableOpenPositions();
-    }
-
 });
 
 document.addEventListener('next-attempt-started', () =>
 {
-
-    gameCtrl.resetBoard();
-    
-    timerView.startTimer();
-    gameState.timerStarted = true;
-
+    if(gameState.solvedInThree)
+        gameCtrl.resetGame();
+    else
+    {
+        gameCtrl.resetBoard();
+        timerView.startTimer();
+        gameState.timerStarted = true;
+    }
 });
 
 document.addEventListener('hints-clicked', () =>
 {
-    console.log('HINTS-CLICKED', gameState.hintsEnabled);
-
     gameState.hintsEnabled = !gameState.hintsEnabled;
 
-    gameState.hintsEnabled ? elements.hintButton.value = 'Hide Hints' :
-                             elements.hintButton.value = 'Show Hints';
+    hintButtonView.toggleHintButtonValue(gameState.hintsEnabled);
 
     gameState.hintsUsed = true;
-
 });
 
+$(document).mouseleave(() =>
+{
+    if(activeCoin.isActive)
+        activeCoin.release();
+
+    // DOES NOT WORK AT BOTTOM BORDER
+})
+
 /* *************************************************************************************************** */
-/*                       UTILITY FUNCTIONS                                                             */
+/*                                          FUNCTIONS                                                  */
 /* *************************************************************************************************** */
 
 function parseCoinData(event)
@@ -188,21 +175,3 @@ function parseID(id)
     return parseInt(id.match(/\d+/)[0]);
 }
 
-/* *************************************************************************************************** */
-/*                       IMPORTS                                                                       */
-/* *************************************************************************************************** */
-
-import GameController from './controllers/GameController.js';
-import PositionController from './controllers/PositionController-test.js';
-import ActiveCoinController from './controllers/ActiveCoinController.js';
-
-import GameState from './states/GameState.js';
-
-import {elements} from './views/base.js';
-import * as messageBoxView from './views/messageBoxView.js';
-import * as movesView from './views/movesView.js';
-import * as hintButtonView from './views/hintButtonView.js';
-import * as progressView from './views/progressView.js'
-import * as timerView from './views/timerView.js';
-
-import {board} from './controllers/GameController.js';
