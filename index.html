@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <title>Dudeny's Solve in Three</title>
+    <title>Solve in Three</title>
     
  
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
@@ -26,11 +26,12 @@
         
         <div class="top-panel">
             
-            <div class="attempts-container">Attempts:
-                <div id="attempts"></div>
+            <div class="attempts-container">Attempt:
+                <div id="attempts">0</div>
             </div>
             
             <div class="moves-container">
+                <div id="move-label">:Moves</div>
                 <div id="move1" class="move-block"></div>
                 <div id="move2" class="move-block"></div>
                 <div id="move3" class="move-block"></div>
@@ -84,7 +85,7 @@
 
         <div class="bottom-panel">
 
-            <div   class="timer"><span id="minutes">0</span><span id="seconds">:00</span></div>
+            <div   class="timer">Timer: <span id="minutes">0</span><span id="seconds">:00</span></div>
             <input id="hint-button" type="button" value="Show Hints">
             <div   id="message-box"></div>
         
@@ -92,52 +93,27 @@
     </div>
 
     <div id="progress-message-container">
-
-        <div class="progress-message-header">
-            <h2 id="progress-message-1">You solved the puzzle in 7 moves.</h2>
-            <p id="progress-message-2">But can you solve the puzzle in just 3?</p>
+        <div class="progress-message">
+            <h2 id="progress-message-1"></h2>
+            <p  id="progress-message-2"></p>
         </div>
-
-        <div class="star-goal-container">
-
-            <div class="star-goals">
-                <img id="red-star-img" class="star-img" src="../images/stars/red-star.png">
-                <ul id="red-star-goals" class="star-list">
-                    <li>Solved in 3</li>
-                    <li>3 Max Moves</li>
-                    <li>1 Max Attempt</li>
-                    <li>&#60= 1 min.</li>
-                    <li>No Hints</li>
-                </ul>
-            </div>
-
-            <div class="star-goals">
-                <img id="orange-star-img" class="star-img" src="../images/stars/orange-star.png">
-                <ul id="orange-star-goals" class="star-list">
-                    <li>Solved in 3</li>
-                    <li>10 Max Moves</li>
-                    <li>3 Max Attempts</li>
-                    <li>&#60= 2 min.</li>
-                    <li>No Hints</li>
-                </ul>
-            </div>
-
-            <div class="star-goals">
-                <img id="yellow-star-img1" class="star-img" src="../images/stars/yellow-star.png">
-                <ul id="yellow-star-goals" class="star-list">
-                    <li>Solved in 3</li>
-                    <li>&#8734 Max Moves</li>
-                    <li>&#8734 Max Attempts</li>
-                    <li>&#8734 Time</li>
-                    <li>Hints/No Hints</li>
-                </ul>
-            </div>
-
+        <div class="stats-container">
+            <table class="stats-table">
+                <tr>
+                    <td id="stat-label-1">Number of Attempts:</td>
+                    <td id="stat-1"></td>
+                <tr>
+                <tr>
+                    <td id="stat-label-2">Time Elapsed:</td>
+                    <td id="stat-2"></td>
+                </tr>
+                <tr>
+                    <td id="stat-label-3">Hints Used:</td>
+                    <td id="stat-3"></td>
+                </tr>
+            </table>
         </div>
-        <div class="clear-fix"></div>
-
         <input id="continue-button" type="button" value="Continue">
-
     </div>
 
 
@@ -145,7 +121,7 @@
     <script src="dist/main.js"></script>
 
     <footer>
-        <div class='copywright'><small>&copy; 2018 David M. Vazquez</small></div>      
+        <div class='copywright'><small>Solve In Three &copy; 2018 David M Vazquez</small></div>      
     </footer>
 </body>
 </html>
