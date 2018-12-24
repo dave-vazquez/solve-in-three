@@ -1,9 +1,28 @@
+/* *************************************************************************************************** */
+/*                                    MOVES VIEW                                                       */
+/* *************************************************************************************************** */
+
+/* *************************************************************************************************** */
+/*                                      IMPORTS                                                        */
+/* *************************************************************************************************** */
+
 import $ from 'jquery';
 import {elements} from './base.js';
 
+/* *************************************************************************************************** */
+/*                                      FUNCTIONS                                                      */
+/* *************************************************************************************************** */
+
 export const incrementMoves = moves =>
 {
-    if(moves <= 5)
+    if(moves === 1)
+    {
+        var moveBlock = elements.moveBlock(1);
+
+        $(elements.moveLabel).fadeOut(200);
+        $(moveBlock).delay(200).fadeIn();
+    }
+    else if(moves <= 5)
     {
         var moveBlock = elements.moveBlock(moves);
 
@@ -23,9 +42,5 @@ export const resetMoves = () =>
 {
     $(elements.allMoveBlocks).css({display: 'none'});
     $(elements.moveCount).css({display: 'none'});
-}
-
-export const incrementAttempts = (attempts) =>
-{
-    elements.attempts.innerText = attempts;
+    $(elements.moveLabel).css({display: 'inline'});
 }
