@@ -25,6 +25,10 @@
 
 <body>
 
+    <div>
+        <input id="start-button" type="button" value="Start">
+    </div>
+
     <div id="game-container">
 
         <div id="title-container">
@@ -42,8 +46,9 @@
             <p id="intro-msg-7" class="intro-msg">And, a coin <strong>cannot move</strong></p>
             <p id="intro-msg-8" class="intro-msg">if it's <strong>trapped</strong> by the <strong>surrounding coins</strong>.</p>
             <p id="intro-msg-9" class="intro-msg">This puzzle can be solved in many ways.</p>
-            <p id="intro-msg-10" class="intro-msg">But there's only one way to solve it in three moves.</p>
-            <p id="intro-msg-11" class="intro-msg">Select a coin to start...</p>
+            <p id="intro-msg-10" class="intro-msg">But there's only one way to solve it</p>
+            <p id="intro-msg-11" class="intro-msg"><strong>in three moves</strong>.</p>
+            <p id="intro-msg-12" class="intro-msg">Select a coin to start...</p>
         </div>
         
         <div id="top-panel">
@@ -151,15 +156,15 @@
         <div class="stats-container">
             <table id="stats-table">
                 <tr>
-                    <td id="stat-label-1">Number of Attempts:</td>
+                    <td id="stat-label-1"><img id="attempt-icon-prog" src="./images/attempts-black.png" alt="Attempts">Attempts:</td>
                     <td id="stat-1"></td>
                 <tr>
                 <tr>
-                    <td id="stat-label-2">Time Elapsed:</td>
+                    <td id="stat-label-2"><img id="timer-icon-prog" src="./images/timer-black.png" alt="Timer">Time Elapsed:</td>
                     <td id="stat-2"></td>
                 </tr>
                 <tr>
-                    <td id="stat-label-3">Hints Used:</td>
+                    <td id="stat-label-3"><img id="hints-icon-prog" src="./images/hints-black.png" alt="Hints">Hints Used:</td>
                     <td id="stat-3"></td>
                 </tr>
             </table>
@@ -170,7 +175,7 @@
     <div id="help-container">
         <div id="help-title-container">
             <h2 id="help-title">Solve In Three</h2>
-            <p  id="help-sub-title-0" class="help-sub-title">Objective:</p>
+            <p  id="help-sub-title-0" class="help-sub-title">Help Menu</p>
             <p  id="help-sub-title-1" class="help-sub-title">Rule 1</p>
             <p  id="help-sub-title-2" class="help-sub-title">Rule 2</p>
         </div>
@@ -241,3 +246,4 @@
     </footer>
 </body>
 </html>
+
