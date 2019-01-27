@@ -1,34 +1,60 @@
-/* *************************************************************************************************** */
-/*                           HINT BUTTON VIEW                                                          */
-/* *************************************************************************************************** */
-
-/* *************************************************************************************************** */
-/*                             IMPORTS                                                                 */
-/* *************************************************************************************************** */
+console.log('hintButtonView.js');
 
 import $ from 'jquery';
 import {elements} from './base.js';
+import {game} from '../index.js';
 
 /* *************************************************************************************************** */
-/*                         EVENT LISTENERS                                                             */
+/*                                        HINT BUTTON VIEW                                             */
 /* *************************************************************************************************** */
 
-const hintsClicked = new Event('hints-clicked');
-
-$(elements.hintButton).on('click', () => document.dispatchEvent(hintsClicked));
-
-/* *************************************************************************************************** */
-/*                           FUNCTIONS                                                                 */
-/* *************************************************************************************************** */
-
-export const resetHintButton = () => elements.hintButton.value = 'Show Hints';
-
-export const toggleHintButtonValue = (toggle) =>
+export default class HintButtonView
 {
-    if(toggle)
+    toggleHintButton()
     {
-        elements.hintButton.value = 'Hide Hints';
+        if(game.hintsEnabled)
+        {
+            $(elements.hintButtonImg).attr('src', './images/png/no-hints-black.png')
+            
+            $(elements.hintButton).css({
+                boxShadow: 'none',
+                backgroundColor: '#d1d1d1'
+            });
+        }
+        else
+        {
+            $(elements.hintButtonImg).attr('src', './images/png/hints-black.png')
+            
+            $(elements.hintButton).css({
+                boxShadow: 'inset 2px 2px 2px rgba(0, 0, 0, 0.33)',
+                backgroundColor: '#c2c2c2'
+            });
+        }                 $(elements.hintButton).val('Hide Hints');
+    
+        game.hintsEnabled = !game.hintsEnabled;
+
+        game.hintsUsed = true;
     }
-    else
-        elements.hintButton.value = 'Show Hints';
+    
+    resetHintButton()
+    {
+        $(elements.hintButtonImg).attr('src', './images/png/no-hints-black.png')
+            
+        $(elements.hintButton).css({
+            boxShadow: 'none',
+            backgroundColor: '#d1d1d1'
+        });
+
+        game.hintsEnabled = false;
+    }
 }
+
+/* *************************************************************************************************** */
+/*                                          EVENT LISTENER                                             */
+/* *************************************************************************************************** */
+
+$(elements.hintButton).on('click', () =>
+{
+    HintButtonView.prototype.toggleHintButton();
+});
+
