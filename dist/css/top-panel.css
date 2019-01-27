@@ -1,0 +1,230 @@
+/* *********************************************** */
+/*                  TOP-PANEL                      */
+/* *********************************************** */
+
+#top-panel {
+
+    width: 910px;
+    height: 30px;
+
+    opacity: 0;
+
+    border: 1px solid #919191;
+    border-radius: 5px;
+
+    -moz-box-shadow:     5px 5px 10px #707070;
+    -webkit-box-shadow:  5px 5px 10px #707070;
+    box-shadow:          5px 5px 10px #707070;
+
+    padding: 2px;
+
+    background-color: #c2c2c2; /* potential 1 b0be90 */
+}
+
+/* *********************************************** */
+/*              ATTEMPTS-CONTAINER                 */
+/* *********************************************** */
+
+#attempts-container {
+
+    display: none;
+    
+    float: left;
+
+    margin-top: 3px;
+    margin-left: 15px;
+
+    color: #1c8648;
+    font-weight: bold;
+}
+
+#attempt-icon
+{
+    width: 18px;
+    height: 18px;
+}
+
+#attempts {
+
+    float: right;
+
+    margin-left: 12px;
+
+    color: #1c8648;
+}
+
+#attempts-message-container
+{    
+    position: absolute;
+
+    height: 40px;
+    width: 298px;
+
+    background-color: rgba(209, 209, 209, 0.753);
+
+    top: 45px;
+
+    font-weight: normal;
+    color: #000000;
+}
+
+.attempts-msg
+{
+    display: none;
+}
+
+#attempts-arrow
+{
+    display: none;
+
+    position: relative;
+
+    float: left;
+
+    margin-top: -7px;
+    margin-left: -55px;
+
+    width: 35px;
+    height: auto
+}
+
+/* *********************************************** */
+/*                MOVES-CONTAINER                  */
+/* *********************************************** */
+
+#moves-container {
+
+    display: none;
+    
+    float: right;
+
+    width: 400px;
+
+    margin-top: 5px;
+    margin-right: 15px;
+
+    /* border: 1px solid #000000; 919191 */
+}
+
+#move-label {
+
+    float: right;
+    color: #1c8648;
+
+    margin-left: 10px;
+    margin-top: -3px;
+}
+
+#moves-icon
+{
+    margin-top: 1px;
+    margin-left: 16px;
+    
+    width: 18px;
+    height: 18px;
+}
+
+.move-block {
+
+    display: none;
+    
+    float: right;
+
+    width: 20px;
+    height: 20px;
+
+    margin-top: -3px;
+    margin-left: 20px;
+
+    border: 1px solid #000000;
+    border-radius: 50%;
+
+    -moz-box-shadow:     3px 3px 5px #707070;
+    -webkit-box-shadow:  3px 3px 5px #707070;
+    box-shadow:          3px 3px 5px #707070;
+}
+
+#move1, #move2, #move3 {
+    background-color: #27ae60;
+}
+
+#move4, #move5 {
+    background-color: #f1c40f; 
+}
+
+#move-count {
+    display: none;
+
+    float: right;
+
+    margin-top: -2px;
+    margin-right: 5px;
+
+    font-weight: bold;
+}
+
+#moves-message-container
+{
+    position: absolute;
+
+    display: none;
+
+    height: 40px;
+    width: 301px;
+
+    background-color: rgba(209, 209, 209, 0.753);
+
+    top: 45px;
+    right: 0px;
+
+    text-align: right;
+}
+
+.moves-msg
+{
+    display: none;
+}
+
+#moves-arrow
+{
+    display: none;
+
+    position: relative;
+
+    float: right;
+
+    margin-top: -7px;
+    margin-right: -55px;
+
+    width: 35px;
+    height: auto
+}
+
+/* *********************************************** */
+/*                 HELP-BUTTON                     */
+/* *********************************************** */
+
+#help-button {
+
+    display: none;
+    
+    float: right;
+
+    width: 28px;
+
+    margin-top: -1px;
+    margin-right: -40px;
+
+    border-radius: 50%;
+    border-color: #919191;
+
+    padding: 0px 4px 2px 4px;
+
+    font-size: 20px;
+
+    background-color: #d1d1d1;
+}
+
+#help-button:focus {
+    outline: 0;
+}
