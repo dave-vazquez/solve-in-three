@@ -1,0 +1,73 @@
+/* ******************************************************************* */
+/*                                INTRO                                */
+/* ******************************************************************* */
+
+#title-container {
+
+    position: absolute;
+
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+#title-0, #title-1, #title-2 {
+    
+    opacity: 0;
+
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#intro-msg-container
+{
+    position: absolute;
+
+    width: 491px;
+    height: 95px;
+    
+    top: 80px;
+    left: 209px;
+
+    text-align: center;
+
+    z-index: 3;
+}
+
+.intro-msg
+{
+    display: none;
+
+    font-size: 22px;
+}
+
+#intro-msg-0
+{
+    margin-left: 50px;
+    
+    font-size: 28px;
+}
+
+#intro-msg-1, #intro-msg-2
+{
+    margin-left: 50px;
+}
+
+#intro-msg-2
+{
+    margin-left: 50px;
+}
+
+#intro-msg-3
+{
+    margin-top: -15px;
+}
+
+#intro-msg-9
+{
+    margin-top: -15px;
+}
+
+#intro-msg-11
+{
+    margin-left: 50px;
+}
