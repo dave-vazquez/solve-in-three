@@ -1,0 +1,196 @@
+/* *********************************************** */
+/*                 BOTTOM-PANEL                    */
+/* *********************************************** */
+
+#bottom-panel {   
+
+    width: 910px;
+    height: 30px;
+
+    opacity: 0;
+
+    padding: 2px;
+
+    border: 1px solid #919191; 
+    border-radius: 5px; 
+
+    -moz-box-shadow:     5px 5px 10px #00000080;
+    -webkit-box-shadow:  5px 5px 10px #00000080;
+    box-shadow:          5px 5px 10px #00000080;
+
+    background-color: #c2c2c2; /* potential 1 b0be90 */
+}
+
+/* *********************************************** */
+/*               TIMER-CONTAINER                   */
+/* *********************************************** */
+
+#timer-container {
+
+    display: none;
+    
+    float: left;
+
+    margin-top: 3px;
+    margin-left: 15px;
+
+    color: #1c8648;
+    font-weight: bold;
+}
+
+#timer-icon
+{
+    float: left;
+
+    margin-top: -1px;
+
+    height: 20px;
+    width: 20px;
+}
+
+#minutes
+{
+    margin-left: 8px;
+}
+
+#minutes, #seconds {
+    
+    float: left;
+
+    color: #1c8648;
+}
+
+#timer-message-container
+{
+    position: absolute;
+
+    display: none;
+
+    height: 40px;
+    width: 247px;
+
+    background-color: rgba(209, 209, 209, 0.753);
+
+    bottom: 40px;
+
+    font-weight: normal;
+    color: #000000;
+}
+
+#timer-msg
+{
+    display: none;
+}
+
+#timer-arrow
+{
+    display: none;
+
+    position: relative;
+    
+    float: left;
+
+    margin-top: -7px;
+    margin-left: -55px;
+
+    width: 35px;
+    height: auto
+}
+
+/* *********************************************** */
+/*                   MESSAGE                       */
+/* *********************************************** */
+
+#message {
+
+    display: none;
+    
+    width: 550px;
+
+    margin: 2px auto 0px auto;
+
+    color: #c0392b;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* *********************************************** */
+/*                  HINT-BUTTON                    */
+/* *********************************************** */
+
+#hint-button-container
+{
+    display: none;
+    
+    float: right;
+}
+
+#hint-button {   
+
+    float: right;    
+
+    margin-top: 1px;
+    margin-right: 10px;
+
+    border: 1px solid #333333;
+    border-radius: 50%;
+
+    padding: 3px 4px 1px 4px;
+
+    background-color: #d1d1d1;
+}
+
+#hint-button:hover{
+    border: 2px solid #333333;
+    margin-right: 9px;
+    margin-top: 0px;
+}
+
+#hint-button:focus {
+    outline: 0;
+}
+
+#hint-icon
+{
+    margin-top: 0px;
+
+    height: 13px;
+    width: 13px;
+}
+
+#hint-message-container
+{    
+    position: absolute;
+
+    height: 40px;
+    width: 285px;
+
+    background-color: rgba(209, 209, 209, 0.753);
+
+    bottom: 45px;
+    right: 0px;
+
+    text-align: right;
+    font-weight: normal;
+    color: #000000;
+}
+
+.hint-msg
+{
+    display: none;
+}
+
+#hint-arrow
+{
+    display: none;
+
+    position: relative;
+    
+    float: right;
+
+    margin-top: -7px;
+    margin-right: -55px;
+
+    width: 35px;
+    height: auto
+}
