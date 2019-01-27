@@ -147,6 +147,8 @@ export default class GameController
             this.solvedInThree = true;
             
         this.currentTime = timerView.stopTimer();
+        
+        this.incrementAttempts();
 
         progressView.displayProgressMessage();
     }
@@ -194,7 +196,6 @@ export default class GameController
     resetBoard()
     {
         this.resetCoinPositions();
-        this.incrementAttempts();
 
         hintButtonView.resetHintButton(); 
 
@@ -276,4 +277,3 @@ class ActiveCoinState
         return this.overDroppable === false;
     }
 }
-
