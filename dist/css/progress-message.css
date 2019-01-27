@@ -73,7 +73,27 @@
 }
 
 #stat-1, #stat-2, #stat-3 {
+    
+    position: relative;
+
+    top: 2px;
+    right: -70px;
+    
     text-align: center;
+}
+
+#attempt-icon-prog, #timer-icon-prog, #hints-icon-prog
+{
+    position: relative;
+    
+    width: 18px;
+    height: 18px;
+
+    top: 4px;
+    right: 5px;
+
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 /* ******************************************************************* */
@@ -84,10 +104,11 @@
 
     float: right;
 
-    margin-top: 25px;
+    margin-top: 35px;
     margin-right: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
 
+    border: 1px solid black;
     border-radius: 5px;
 
     padding: 2px 6px 4px 6px;
