@@ -135,12 +135,12 @@
 
 #page-left:hover
 {
-    cursor: url('../../images/png/left.png'), e-resize;
+    cursor: url('../../images/left.png'), w-resize;
 }
 
 #page-right:hover
 {
-    cursor: url('../../images/png/right.png'), w-resize;
+    cursor: url('../../images/right.png'), e-resize;
 }
 
 .page-selector
