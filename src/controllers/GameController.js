@@ -1,152 +1,279 @@
-/* *************************************************************************************************** */
-/*                       IMPORTS                                                                       */
-/* *************************************************************************************************** */
-
-import $ from 'jquery';
-import 'jquery-ui/ui/widgets/draggable';
+console.log('GameController.js');
 
 import Board from '../models/Board';
-import Position from '../models/Position.js';
-import Coin from '../models/Coin.js';
 
-import * as positionView from '../views/positionView.js';
-import * as coinView from '../views/coinView.js';
-import * as timerView from '../views/timerView.js';
-import * as movesView from '../views/movesView.js';
-import * as attemptsView from '../views/attemptsView.js'
-import * as hintButtonView from '../views/hintButtonView';
-
-import {elements} from '../views/base.js';
-
-import {gameState} from '../index.js';
-
-import * as cookie from './cookieController.js'
+import CoinView from '../views/coinView.js';
+import PositionView from '../views/positionView.js'
+import AttemptsView from '../views/attemptsView.js';
+import TimerView from '../views/timerView.js';
+import MessageView from'../views/messageView.js';
+import MovesView from '../views/movesView.js';
+import HintButtonView from '../views/hintButtonView.js'
+import '../views/helpView.js';
+import ProgressView from '../views/progressView.js';
 
 /* *************************************************************************************************** */
-/*                       GAME CONTROLLER                                                               */
+/*                                       GAME CONTROLLER                                               */
 /* *************************************************************************************************** */
 
-export let board = new Board();
+let positionView = new PositionView();
+let coinView = new CoinView();
+const attemptsView = new AttemptsView();
+const timerView = new TimerView();
+const messageView = new MessageView();
+const movesView = new MovesView();
+const progressView = new ProgressView();
+const hintButtonView = new HintButtonView();
 
-const INITIAL_BOARD_STATE = $(elements.board).clone();
+let board = new Board();
 
 export default class GameController
 {
     constructor()
-    {   
-        this.initializePositions();
-        this.initializeCoins();
-        this.initializeTimer();
-    }
-
-    initializePositions()
     {
-        elements.allPositions.forEach(position => 
-        {            
-            var posID = parseID(position.id);
-            
-            board.add(new Position(posID));
+        this.moves = 0;
+        this.attempts = 0;
+        //this.attemptStarted = false;
 
-            $(position).droppable();
-            $(position).droppable('disable');
-        });
+        this.hintsEnabled = false;
+        this.hintsUsed = false;
+
+        this.solvedInThree = false;
+
+        this.currentTime = {
+            minutes: 0,
+            seconds: 0,
+            totalSeconds: 0
+        }
+
+        this.timerStarted = false;
+
+        this.reset = () => {
+            this.moves = 0;
+            this.hintsEnabled = false;
+            //this.attemptStarted = false;
+        };
+
+        this.activeCoin = new ActiveCoinState();
     }
 
-    initializeCoins()
-    {
-        elements.allCoins.forEach(coin =>
-        {
-            var coinID = parseID(coin.id)
-            var posID = parseID(coin.parentNode.id);
-            
-            board.addCoinTo(posID, new Coin(coinID));
+    selectCoin(coinID, posID) {   
+        
+        this.initializeActiveCoinPorperties(coinID, posID);
 
-            $(coin).draggable(
-            {   
-                revertDuration: 100,
-                containment: 'document'
-            });
-        });
+        if(this.timerStarted === false)
+            this.startTimer();
+
+        if(board.coinIsBlocked(this.activeCoin.origin))
+            this.preventFurtherAction();
+        else
+            this.startNewMove();
     }
 
-    initializeTimer()
+    moveCoin() {
+        
+        this.activeCoin.moved = true;
+    }
+
+    moveCoinOver(posID){
+        
+        this.activeCoin.isOver(this.parseID(posID));
+    }
+
+    releaseCoin() {
+        
+        if(this.activeCoin.moved === false)
+            this.returnCoinToOrigin();
+    
+        if(this.hintsEnabled) 
+            positionView.concealOpenPositions(board.openPositions);
+
+        coinView.lowerCoin(this.activeCoin.id);
+    }
+
+    dropCoin(position)
     {   
-        cookie.destroy();
+        let dropPosition = this.parseID(position);
 
-        //console.log('COOKIE:', cookie);
+        this.addCoinToNewPosition(dropPosition);
+
+        this.disableOpenPosition(dropPosition);
+
+        if(this.activeCoin.returnedToOrigin() === false)
+            this.incrementMoves();
+
+        if(board.solutionFound())
+            this.endCurrentAttempt();
+    }
+
+    handleCoinRevert() {
+
+        //console.log('COIN-REVERTED');
+        // problem here, when a coin is isolated and moved slightly the coin-reverted error message will fire
         
-        let minutes = cookie.get('minutes').length === 0 ? 0 : parseInt(cookie.get('minutes'));
-        let seconds = cookie.get('seconds').length === 0 ? 0 : parseInt(cookie.get('seconds'));
-        let totalSeconds = cookie.get('totalSeconds').length === 0 ? 0 : parseInt(cookie.get('totalSeconds'));
-
-        //console.log('Minutes:', minutes, 'Seconds:', seconds);
-        
-        cookie.set('totalSeconds', (minutes * 60) + seconds);
-
-        timerView.setTime(minutes,seconds,totalSeconds);
-        timerView.updateTimer();
-
-        if(cookie.get('timerStarted') === 'true')
+        if(this.activeCoin.dropped === false) 
         {
-             timerView.startTimer();
-             gameState.timerStarted = true;
+            this.returnCoinToOrigin();
+
+            if(this.activeCoin.moved)
+                messageView.showMessage('invalid-move');
         }
     }
 
-    solutionFound()
+    addCoinToNewPosition(dropPosition)
     {
-        return board.solutionFound();
+        board.addCoinTo(dropPosition, this.activeCoin.id);
+
+        coinView.snapCoinTo(dropPosition, this.activeCoin.id);
+        this.activeCoin.dropped = true;
+        this.activeCoin.isActive = false;
+    }
+
+    disableOpenPosition(dropPosition)
+    {
+        positionView.disableDrop(dropPosition);
+        positionView.disableDrop(board.openPositions);
+    }
+
+    incrementMoves()
+    {
+        this.moves++;
+        movesView.incrementMoves(this.moves);
+    }
+
+    endCurrentAttempt()
+    {
+        if(this.moves === 3)
+            this.solvedInThree = true;
+            
+        this.currentTime = timerView.stopTimer();
+
+        progressView.displayProgressMessage();
+    }
+
+    initializeActiveCoinPorperties(coinID, posID)
+    {
+        this.activeCoin.initialize(this.parseID(coinID), this.parseID(posID));
+    }
+
+    startTimer()
+    {
+        console.log('STARTING TIMER');
+        timerView.startTimer();
+        this.timerStarted = true;
+    }
+
+    preventFurtherAction()
+    {
+        // forces a 'mouseup' event on the activeCoin
+        coinView.forceRelease(this.activeCoin.id);
+            
+        coinView.highlightCoins(board.surroundingCoins);
+        
+        messageView.showMessage('coin-blocked');
+    }
+
+    startNewMove()
+    {
+        board.removeCoinFrom(this.activeCoin.origin);
+
+        coinView.raiseCoin(this.activeCoin.id);
+
+        positionView.enableDrop(board.openPositions);
+        
+        if(this.hintsEnabled) 
+            positionView.revealOpenPositions(board.openPositions);
+    }
+
+    returnCoinToOrigin()
+    {
+        board.addCoinTo(this.activeCoin.origin, this.activeCoin.id);
+        positionView.disableDrop(board.openPositions);
     }
 
     resetBoard()
-    {   
-        board = new Board();
-        
-        movesView.resetMoves();
-        attemptsView.incrementAttempts(gameState.attempts);
-        
-        hintButtonView.resetHintButton();
-        
-        $(elements.board).replaceWith(INITIAL_BOARD_STATE.clone());
-
-        elements.refresh();
-
-        positionView.bindDroppable(elements.allPositions);
-        coinView.bindDraggable(elements.allCoins);
-
-        this.initializePositions();
-        this.initializeCoins();
-
-        gameState.reset();
-    }
-
-    resetGame()
     {
+        this.resetCoinPositions();
+        this.incrementAttempts();
+
+        hintButtonView.resetHintButton(); 
+
         board = new Board();
+        this.reset();
+    }
 
-        attemptsView.resetAttempts();
-        movesView.resetMoves();
+    incrementAttempts()
+    {
+        this.attempts++;
+        //this.attemptStarted = true;
+        attemptsView.incrementAttempts(this.attempts);
+    }
 
-        timerView.resetTime();
-        timerView.stopTimer();
+    resetCoinPositions()
+    {
+        positionView.removeCoinsFrom(board.occupiedPosIDs);
+        coinView.resetCoinPositions();
+    }
 
-        hintButtonView.resetHintButton();
+    forceCoinRelease()
+    {
+        coinView.forceRelease(this.activeCoin.id);
+    }
 
-        gameState.resetAll();
-
-        $(elements.board).replaceWith(INITIAL_BOARD_STATE.clone());
-
-        elements.refresh();
-
-        positionView.bindDroppable(elements.allPositions);
-        coinView.bindDraggable(elements.allCoins);
-
-        this.initializePositions();
-        this.initializeCoins();
+    parseID(id)
+    {
+        return parseInt(id.match(/\d+/)[0]);
     }
 }
 
-function parseID(id)
+/* *************************************************************************************************** */
+/*                                         ACTIVE COIN STATE                                           */
+/* *************************************************************************************************** */
+
+class ActiveCoinState
 {
-    return parseInt(id.match(/\d+/)[0]);
+    constructor()
+    {        
+        this.id = null;
+        this.origin = null;
+        this.lastPositionOver = null;
+
+        this.moved = false;
+        this.dropped = false;
+
+        this.isActive = false;
+    }
+
+    initialize(id, origin)
+    {
+        this.id = id;
+        this.origin = origin;
+        this.lastPositionOver = this.origin;
+        
+        this.moved = false;
+        this.dropped = false;
+
+        this.isActive = true;
+    }
+
+    isOver(posID)
+    {
+        this.lastPositionOver = posID;
+    }
+
+    returnedToOrigin()
+    {
+        return this.lastPositionOver === this.origin;
+    }
+
+    isOut()
+    {
+        this.overDroppable = false;
+    }
+
+    reverted()
+    {
+        return this.overDroppable === false;
+    }
 }
+
