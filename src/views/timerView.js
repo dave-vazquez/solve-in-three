@@ -1,78 +1,77 @@
-/* *************************************************************************************************** */
-/*                                      TIMER VIEW                                                     */
-/* *************************************************************************************************** */
+console.log('timerView.js');
 
-/* *************************************************************************************************** */
-/*                                        IMPORTS                                                      */
-/* *************************************************************************************************** */
-
-import $ from 'jquery';
 import {elements} from './base.js';
 import * as cookie from '../controllers/cookieController.js';
 
 /* *************************************************************************************************** */
-/*                                        FUNCTIONS                                                    */
+/*                                        TIMER VIEW                                                   */
 /* *************************************************************************************************** */
 
-let minutes, seconds, totalSeconds, timerInterval;
-
-export const startTimer = ()=>
-{   
-    if(cookie.get('timerStarted') === 'false')
-        cookie.set('timerStarted', true);
-    
-    //totalSeconds = cookie.get('totalSeconds');
-
-    timerInterval = setInterval(function()
+export default class TimerView
+{
+    constructor()
     {
-        totalSeconds++;
-
-        //console.log(totalSeconds);
-        
-        minutes = parseInt((totalSeconds / 60));
-        seconds = parseInt((totalSeconds % 60));
-
-        //console.log('Minutes: ', minutes, 'Seconds:', seconds);
-
-        updateTimer();
-
-    }, 1000);
-}
-
-export const stopTimer = () =>
-{
-    clearInterval(timerInterval);
-
-    return {minutes, seconds, totalSeconds}
-}
-
-export const updateTimer = () =>
-{
-    cookie.set('minutes', minutes.toString());
-    cookie.set('seconds', seconds.toString());
+        this.minutes = 0;
+        this.seconds = 0
+        this.totalSeconds = 0
+        this.timerInterval = null;
+    }
     
-    elements.timerMinutes.innerText = minutes;
-    elements.timerSeconds.innerText = seconds < 10 ? `:0${seconds}` : `:${seconds}`;
+    startTimer()
+    {
+        if(cookie.get('timerStarted') === 'false')
+        cookie.set('timerStarted', true);
+
+        this.timerInterval = setInterval(()=>
+        {
+            this.totalSeconds++;
+            
+            this.minutes = parseInt((this.totalSeconds / 60));
+            this.seconds = parseInt((this.totalSeconds % 60));
+
+            this.updateTimer();
+
+        }, 1000);
+    }
+
+    stopTimer()
+    {
+        clearInterval(this.timerInterval);
+
+        return {minutes: this.minutes, seconds: this.seconds, totalSeconds: this.totalSeconds};
+    }
+
+    updateTimer()
+    {
+        cookie.set('minutes', this.minutes.toString());
+        cookie.set('seconds', this.seconds.toString());
+        
+        elements.timerMinutes.innerText = this.minutes;
+        elements.timerSeconds.innerText = this.seconds < 10 ? `:0${this.seconds}` : `:${this.seconds}`;
+    }
+
+    setTime(min, sec, totalSec)
+    {
+        this.minutes = min;
+        this.seconds = sec;
+        this.totalSeconds = totalSec;
+    }
+
+    getTime()
+    {
+        return {minutes: this.minutes, seconds: this.seconds, totalSeconds: this.totalSeconds};
+    }
+
+    resetTime()
+    {
+        this.minutes = 0;
+        this.seconds = 0;
+        this.totalSeconds = 0;
+
+        cookie.set('minutes', minutes.toString());
+        cookie.set('seconds', seconds.toString());
+
+        elements.timerMinutes.innerText = '0';
+        elements.timerSeconds.innerText = ':00';
+    }
 }
-
-export const setTime = (min, sec, totalSec) =>
-{
-    minutes = min;
-    seconds = sec;
-    totalSeconds = totalSec;
-}
-
-export const getTime = () => {minutes, seconds, totalSeconds};
-
-export const resetTime = () =>
-{
-    minutes = 0;
-    seconds = 0;
-    totalSeconds = 0;
-
-    cookie.set('minutes', minutes.toString());
-    cookie.set('seconds', seconds.toString());
-
-    elements.timerMinutes.innerText = '0';
-    elements.timerSeconds.innerText = ':00';
-};
