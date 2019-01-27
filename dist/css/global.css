@@ -12,9 +12,25 @@
     font-family: 'Work Sans', sans-serif;
 }
 
+html{
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0px 0px 100px rgba(0, 0, 0, 0.596);
+
+    z-index: 3;
+}
+
 body
 {   
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+
     max-width: 1140px;
-    background-color: #d1d1d1;
+    background-color: #d1d1d1; /* potential 1 97d3cb */
 }
 
