@@ -1,46 +1,43 @@
-/* *************************************************************************************************** */
-/*                                    MOVES VIEW                                                       */
-/* *************************************************************************************************** */
-
-/* *************************************************************************************************** */
-/*                                      IMPORTS                                                        */
-/* *************************************************************************************************** */
+console.log('movesView.js');
 
 import $ from 'jquery';
 import {elements} from './base.js';
 
 /* *************************************************************************************************** */
-/*                                      FUNCTIONS                                                      */
+/*                                           MOVES VIEW                                                */
 /* *************************************************************************************************** */
 
-export const incrementMoves = moves =>
+export default class MovesView
 {
-    if(moves === 1)
+    incrementMoves(moves)
     {
-        var moveBlock = elements.moveBlock(1);
-
-        $(elements.moveLabel).fadeOut(200);
-        $(moveBlock).delay(200).fadeIn();
+        // if(moves === 1)
+        // {
+        //     var moveBlock = elements.moveBlock(1);
+    
+        //     $(elements.moveLabel).fadeOut(200);
+        //     $(moveBlock).delay(200).fadeIn();
+        // }
+        if(moves <= 5)
+        {
+            var moveBlock = elements.moveBlock(moves);
+    
+            $(moveBlock).fadeIn();
+        }
+        else
+        {
+            var moveCount = elements.moveCount;
+    
+            moveCount.innerText = moves;
+    
+            $(moveCount).fadeIn();
+        }
     }
-    else if(moves <= 5)
+
+    resetMoves()
     {
-        var moveBlock = elements.moveBlock(moves);
-
-        $(moveBlock).fadeIn();
+        $(elements.allMoveBlocks).css({display: 'none'});
+        $(elements.moveCount).css({display: 'none'});
+        $(elements.moveLabel).css({display: 'inline'});
     }
-    else
-    {
-        var moveCount = elements.moveCount;
-
-        moveCount.innerText = moves;
-
-        $(moveCount).fadeIn();
-    }
-}
-
-export const resetMoves = () =>
-{
-    $(elements.allMoveBlocks).css({display: 'none'});
-    $(elements.moveCount).css({display: 'none'});
-    $(elements.moveLabel).css({display: 'inline'});
 }
