@@ -1,141 +1,141 @@
-/* *************************************************************************************************** */
-/*                           COIN VIEW                                                                 */
-/* *************************************************************************************************** */
-
-/* *************************************************************************************************** */
-/*                            IMPORTS                                                                  */
-/* *************************************************************************************************** */
+console.log('coinView.js');
 
 import $ from 'jquery';
 import 'jquery-ui/ui/widgets/draggable';
 import 'jquery-ui/ui/effects/effect-highlight';
 import 'jquery-ui/ui/effects/effect-shake';
 import 'jquery-shadow-animation/jquery.animate-shadow';
-import {elements} from './base.js'
+
+import {elements} from './base.js';
+import {game} from '../index.js';
 
 /* *************************************************************************************************** */
-/*                       EVENT LISTENERS                                                               */
+/*                           COIN VIEW                                                                 */
 /* *************************************************************************************************** */
 
-export const bindDraggable = coin =>
-{   
-    $(coin).draggable()
+export default class CoinView 
+{
+    constructor()
+    {
+        this.init();
+    }
+
+    init(coins = elements.allCoins)
+    {
+        $(coins).draggable({
+            revertDuration: 100,
+            containment: 'document' 
+        });
+
+        this.bindCoinEvents(coins);
+    }
+
+    bindCoinEvents(coin)
+    {
+        $(coin).on('mousedown', function() {
+            $(coin).stop(true, true);
+            game.selectCoin(this.id, this.parentNode.id)
+        });
+        
+        $(coin).on('dragstart', () => game.moveCoin());
+        
+        $(coin).on('mouseup', () => game.releaseCoin());
+        
+        $(coin).draggable({revert: function() {
+            game.handleCoinRevert();
+            return 'invalid';
+        }});  
+    }
+
+    stopAnimation(coinID)
+    {
+        $(elements.coin(coinID)).finish();
+    }
+
+    forceRelease(coinID)
+    {
+        let coin = elements.coin(coinID);
+
+        $(coin).trigger('mouseup');
+
+        $(coin).css({zIndex: 0});
+    }
+
+    raiseCoin(coinID)
+    {
+        let coin = elements.coin(coinID);
+
+        $(coin).finish().animate({marginLeft: '-8px', marginTop: '-8px'}, {duration: 100, queue: false});
+        $(coin).finish().animate({boxShadow: '5px 5px 9px rgba(0, 0, 0, 0.33)'}, {duration: 100, queue: false});
     
-    $(coin).on('mousedown', function()
-    {    
-        $(this).stop(true, true); // stops all animations on coin
+        $(coin).css({zIndex: 1});
+    }
 
-        document.dispatchEvent(new CustomEvent('coin-selected', 
+    lowerCoin(coinID)
+    {
+        let coin = elements.coin(coinID);
+
+        $(coin).finish().animate({marginLeft: '-4px', marginTop: '-4px'}, {duration: 100, queue: false});
+        $(coin).finish().animate({boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.33)'}, {duration: 100, queue: false});
+    
+        $(coin).css({zIndex: 0});
+    }
+
+    highlightCoins(coinIDs)
+    {
+        coinIDs.forEach(coinID =>
         {
-            detail: {coinID: this.id, posID: this.parentNode.id}
-        }));
-    });
-
-    $(coin).on('dragstart', function()
-    {
-        document.dispatchEvent(new Event('coin-moved'));
-    });
-
-    $(coin).on('mouseup', function() 
-    { 
-        document.dispatchEvent(new Event('coin-released'));
-    });
-
-    $(coin).draggable({revert: function()
-    {
-        document.dispatchEvent(new Event('coin-reverted'));
-        return 'invalid';
-    }});
-}
-bindDraggable((elements.classCoin));
-
-/* *************************************************************************************************** */
-/*                                 FUNCTIONS                                                           */
-/* *************************************************************************************************** */
-
-export const raiseZIndex = coinID =>
-{
-    elements.allCoins.forEach(coin => coin.style.zIndex = 0); 
-
-    elements.coin(coinID).style.zIndex = 1;
-}
-
-export const dropZIndex = coinID =>
-{
-    elements.coin(coinID).style.zIndex = 0;
-}
-
-export const elevateCoin = (toggle, coinID) =>
-{
-    var coin = elements.coin(coinID);
+            let coin = elements.coin(coinID);
     
-    if(toggle)
-    {
-        $(coin).animate({marginLeft: '-4px', marginTop: '-4px'}, {duration: 100, queue: false});
-        $(coin).animate({boxShadow: '5px 5px 8px rgba(0, 0, 0, 0.33)'}, {duration: 100, queue: false});
+            $(coin).stop(true,true).effect('highlight', {color: '#2a7cb3', queue: false}, 1500);
+        });
     }
-    else
+
+    snapCoinTo(posID, coinID)
     {
-        $(coin).animate({marginLeft: '-2px', marginTop: '-2px'}, {duration: 100, queue: false});
-        $(coin).animate({boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.33)'}, {duration: 100, queue: false});
+        let coin = elements.coin(coinID); // original "active coin"
+
+        // insert a copy of the "active coin" into the new position
+        elements.position(posID).innerHTML = `<div id="coin${coinID}" class="coin"></div>`;
+    
+        // coin.parentNode will be null if the coin is returned back to it's origin (within a single move)
+        if(coin.parentNode !== null) 
+            coin.parentNode.removeChild(coin);
+    
+        coin = elements.coin(coinID); // "active coin" copy
+    
+        this.resetCoinProperties(1, 0, 'auto', coinID);
+
+        // coinID < 3 ? $(coin).css({opacity: 1, right: '0px', pointerEvents: 'auto'}):
+        //              $(coin).css({opacity: 1, left: '0px', pointerEvents: 'auto'}) ;
+        
+        this.init(coin);
     }
-}
 
-export const dragEnabled = (toggle, coinID) =>
-{
-    var coin = elements.coin(coinID);
+    resetCoinPositions()
+    {
+        var initialCoinPositions = [6, 7, 8, 11, 12, 13];
 
-    if(toggle === true)
-        $(coin).draggable('enable');
-    else
-        $(coin).draggable('disable');
-}
+        initialCoinPositions.forEach((posID, coinID) =>
+        {
+            elements.position(posID).innerHTML = `<div id="coin${coinID}" class="coin"></div>`;
 
-export const release = coinID =>
-{
-    var coin = elements.coin(coinID);
+            this.resetCoinProperties(0, 1500, 'none', coinID);
+            
+            // coinID < 3 ? $(elements.coin(coinID)).css({opacity: 0, right: '1500px'}):
+            //              $(elements.coin(coinID)).css({opacity: 0, left: '1500px'}) ;
+        });
 
-    $(coin).trigger('mouseup');
-}
+        elements.refresh();
 
-export const highlightCoin = coinID =>
-{
-    var coin = elements.coin(coinID);
+        this.init(elements.allCoins);
+    }
 
-    $(coin).stop(true,true).effect('highlight', {color: '#2a7cb3', queue: false}, 1500);
-}
-
-/* 
-   snapCoin - Simulates the effect of a coin 'snapping' to a position on the board by
-              1) Inserting a copy of the "active coin" element into the new DOM "position",
-              2) Deleting the original "active coin" element from the DOM
-              3) Re-initializing the draggable properties/events on the "active coin" copy
-*/
-export const snapCoinTo = (posID, coinID) => 
-{
-    let coin = elements.coin(coinID); // original "active coin"
-
-    // insert a copy of the "active coin" into the new position
-    elements.position(posID).innerHTML = `<div id="coin${coinID}" class="coin"></div>`;
-
-    // coin.parentNode will be null if the coin was returned back to it's origin (within a single move)
-    if(coin.parentNode !== null) 
-        coin.parentNode.removeChild(coin);
-
-    coin = elements.coin(coinID); // "active coin" copy
-
-    // re-initialize draggable properties
-    $(coin).draggable(
-    {   
-        revertDuration: 100,
-        containment: 'document'
-    });
-
-    //events 
-    bindDraggable(coin); 
-}
-
-function parseID(id)
-{
-    return parseInt(id.match(/\d+/)[0]);
+    resetCoinProperties(opacVal, posVal, pointEvtVal, coinID)
+    {
+        var coin = elements.coin(coinID);
+        
+        coinID < 3 ? $(coin).css({opacity: opacVal, left: `-${posVal}px`, pointerEvents: pointEvtVal}):
+                     $(coin).css({opacity: opacVal, left: `${posVal}px`, pointerEvents: pointEvtVal}) ;
+    }
 }
