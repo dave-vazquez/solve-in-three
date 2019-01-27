@@ -9,35 +9,68 @@
     
     <title>Solve in Three</title>
     
- 
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="css/vendor/normalize.css">
     
     <link rel="stylesheet" href="dist/css/global.css">
+    <link rel="stylesheet" href="dist/css/intro.css">
     <link rel="stylesheet" href="dist/css/game-container.css">
-    <link rel="stylesheet" href="dist/css/game-assets.css">
+    <link rel="stylesheet" href="dist/css/top-panel.css">
+    <link rel="stylesheet" href="dist/css/bottom-panel.css">
+    <link rel="stylesheet" href="dist/css/interactive-elements.css">
+    <link rel="stylesheet" href="dist/css/progress-message.css">
+    <link rel="stylesheet" href="dist/css/help-menu.css">
     <link rel="stylesheet" href="dist/css/misc.css">
-    <link rel="stylesheet" href="dist/css/splash-message.css">
 
 </head>
 
 <body>
+
     <div id="game-container">
+
+        <div id="title-container">
+            <div id="title"><span id="title-0">Solve </span><span id="title-1">in </span><span id="title-2">Three</span></div>
+        </div>
+
+        <div id="intro-msg-container">
+            <p id="intro-msg-0" class="intro-msg">Welcome to Solve in Three</p>
+            <p id="intro-msg-1" class="intro-msg">The goal of this puzzle
+            <p id="intro-msg-2" class="intro-msg">is to arrange these <strong>six coins</strong>...</p> 
+            <p id="intro-msg-3" class="intro-msg">...into the <strong>shape of a ring</strong>.</p>
+            <p id="intro-msg-4" class="intro-msg">There are two rules:</p>
+            <p id="intro-msg-5" class="intro-msg">A <strong>coin</strong> can <strong>only move</strong></p>
+            <p id="intro-msg-6" class="intro-msg">where it will touch <strong>two or more coins</strong>.</p>
+            <p id="intro-msg-7" class="intro-msg">And, a coin <strong>cannot move</strong></p>
+            <p id="intro-msg-8" class="intro-msg">if it's <strong>trapped</strong> by the <strong>surrounding coins</strong>.</p>
+            <p id="intro-msg-9" class="intro-msg">This puzzle can be solved in many ways.</p>
+            <p id="intro-msg-10" class="intro-msg">But there's only one way to solve it in three moves.</p>
+            <p id="intro-msg-11" class="intro-msg">Select a coin to start...</p>
+        </div>
         
-        <div class="top-panel">
+        <div id="top-panel">
             
-            <div class="attempts-container">Attempt:
+            <input id="help-button" type="button" value="?">
+            <img id="attempts-arrow" src="./images/png/right-arrow.png">
+            <div id="attempts-container" class="icon"><img id="attempt-icon" src="./images/png/attempts-black.png" alt="Attempts">
                 <div id="attempts">0</div>
+                <div id="attempts-message-container">
+                    <p id="attempts-msg-0" class="attempts-msg">Every solve greater than three moves,</p> 
+                    <p id="attempts-msg-1" class="attempts-msg">is recorded as an attempt.</p>
+                </div>
             </div>
             
-            <div class="moves-container">
-                <div id="move-label">:Moves</div>
+            <img id="moves-arrow" src="./images/png/left-arrow.png">
+            <div id="moves-container">
+                <div id="move-label"><img id="moves-icon" src="./images/png/moves-black.png" alt="Moves"></div>
                 <div id="move1" class="move-block"></div>
                 <div id="move2" class="move-block"></div>
                 <div id="move3" class="move-block"></div>
                 <div id="move4" class="move-block"></div>
                 <div id="move5" class="move-block"></div>
                 <div id="move-count"></div>
+                <div id="moves-message-container">
+                    <p id="moves-msg-0" class="moves-msg">As you move coins accross the board,</p>
+                    <p id="moves-msg-1" class="moves-msg">the number of moves will increase.</p>
+                </div>
             </div>
 
         </div>
@@ -47,15 +80,15 @@
             <div class="clear-fix"></div>
 
             <!-- ********************** ROW 0 ************************-->
-            <div id="pos0" class="position margin-left-180px"></div>
-            <div id="pos1" class="position"></div>
-            <div id="pos2" class="position"></div>
-            <div id="pos3" class="position"></div>
-            <div id="pos4" class="position"></div>
+            <div id="pos0" class="position margin-left-204px margin-top-0px"></div>
+            <div id="pos1" class="position margin-top-0px"></div>
+            <div id="pos2" class="position margin-top-0px"></div>
+            <div id="pos3" class="position margin-top-0px"></div>
+            <div id="pos4" class="position margin-top-0px"></div>
             <div class="clear-fix"></div>
 
             <!-- ********************** ROW 1 ************************-->
-            <div id="pos5" class="position margin-left-120px"></div>
+            <div id="pos5" class="position margin-left-136px"></div>
             <!--              Coin Occupied Positions                 -->
             <div id="pos6" class="position"><div id="coin0" class="coin"></div></div>
             <div id="pos7" class="position"><div id="coin1" class="coin"></div></div>
@@ -65,7 +98,7 @@
             <div class="clear-fix"></div>
 
             <!-- ********************** ROW 2 ************************-->
-            <div id="pos10" class="position margin-left-60px"></div>
+            <div id="pos10" class="position margin-left-68px"></div>
             <!--              Coin Occupied Positions                 -->
             <div id="pos11" class="position"><div id="coin3" class="coin"></div></div>
             <div id="pos12" class="position"><div id="coin4" class="coin"></div></div>
@@ -83,22 +116,40 @@
             <!--<input id="hints" type="button" value="Show Hints">-->
         </div>
 
-        <div class="bottom-panel">
+        <div id="bottom-panel">
 
-            <div   class="timer">Timer: <span id="minutes">0</span><span id="seconds">:00</span></div>
-            <input id="hint-button" type="button" value="Show Hints">
-            <div   id="message-box"></div>
+            <img id="timer-arrow" src="./images/png/right-arrow.png">
+            <div id="timer-container">
+                <img id="timer-icon" src="./images/png/timer-black.png" alt="Timer">
+                <div id="minutes">0</div>
+                <div id="seconds">:00</div>
+                <div id="timer-message-container">
+                    <p id="timer-msg-1">The timer starts</p>
+                    <p id="timer-msg-0">when the first coin is selected.</p>
+                </div>
+            </div>
+            <img id="hint-arrow" src="./images/png/left-arrow.png">
+            <div id="hint-button-container">
+                <button id="hint-button">
+                    <img id="hint-icon" src="./images/png/no-hints-black.png" alt="Hints">
+                </button>
+                <div id="hint-message-container">
+                    <p id="hint-msg-0" class="hint-msg">The hint button reveals all positions</p> 
+                    <p id="hint-msg-1" class="hint-msg">a selected coin can move to.</p>
+                </div>
+            </div>
+            <div id="message"></div>
         
         </div>
     </div>
 
     <div id="progress-message-container">
-        <div class="progress-message">
+        <div id="progress-message-header">
             <h2 id="progress-message-1"></h2>
             <p  id="progress-message-2"></p>
         </div>
         <div class="stats-container">
-            <table class="stats-table">
+            <table id="stats-table">
                 <tr>
                     <td id="stat-label-1">Number of Attempts:</td>
                     <td id="stat-1"></td>
@@ -116,6 +167,71 @@
         <input id="continue-button" type="button" value="Continue">
     </div>
 
+    <div id="help-container">
+        <div id="help-title-container">
+            <h2 id="help-title">Solve In Three</h2>
+            <p  id="help-sub-title-0" class="help-sub-title">Objective:</p>
+            <p  id="help-sub-title-1" class="help-sub-title">Rule 1</p>
+            <p  id="help-sub-title-2" class="help-sub-title">Rule 2</p>
+        </div>
+
+        <div id="page-container">
+
+            <div id="page-left"></div>
+            <div id="page-right"></div>
+
+            <div id="objective-container">
+                <div id="objective-summary">
+                    <p id="objective-msg-0">The goal of this puzzle is to arrange the <strong>six coins</strong></p>
+                    <p id="objective-msg-0">into the <strong>shape of a ring</strong>.</p></br>
+                    <p id="objective-msg-2">There are <strong>many ways</strong> to solve this puzzle,</p>
+                    <p id="objective-msg-3">but only one way to solve it in <strong>three moves</strong>.</p></br>
+                    <p><strong>Solve in three</strong> with the <strong>fewest number of attempts</strong>,</p>
+                    <p>and the <strong>shortest amount of time</strong>.</p>
+                </div>
+                <div id="objective-img-container">
+                    <img id="objective-img" src="images/objective.gif">
+                </div>
+            </div>
+
+            <div id="rule-1-container">
+                <div id="rule-1-summary">
+                    <p id="rule-1-msg-0">A coin can only move to a position</p>
+                    <p id="rule-1-msg-1">where it will touch <strong>two or more coins</strong></p></br> 
+                    <div class="rule-1-img-container">
+                        <img id="rule-1-img" src="images/rule-1a-320.gif">
+                    </div>   
+                </div>
+            </div>
+
+            <div id="rule-2-container">
+                <div id="rule-2-summary">
+                    <p id="rule-2-msg-0">A coin cannot move</p> 
+                    <p id="rule-2-msg-1">if it is <strong>blocked</strong> by its <strong>surrounding coins</strong>.</p></br>
+                    <div class="rule-2-img-container">
+                        <img id="rule-2-img" src="images/rule-2-320.gif">
+                    </div>   
+                </div>
+            </div>
+
+            <div id="numberphile-container">
+                <div id="numberphile-summary">
+                    <p id="numberphile-msg-0">This project was inspired by the same puzzle</p>
+                    <p id="numberphile-msg-1">featured in the <img id="numberphile-img" src="images/numberphile.png"> video:</p></br>
+                    <p id="numberphile-msg-3"><strong>"The Coin Hexagon"</strong></p></br> 
+                    <iframe id="numberphile-video" width="350" height="198" src="https://www.youtube.com/embed/_pP_C7HEy3g" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></br>
+                    <p id="warning-msg"><strong>Warning</strong>: The solution to this puzzle can be found in this video</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="page-selector">
+            <input id="page-1" class="page-button" type="button" value="">
+            <input id="page-2" class="page-button" type="button" value="">
+            <input id="page-3" class="page-button" type="button" value="">
+        </div>
+    </div>
 
     
     <script src="dist/main.js"></script>
