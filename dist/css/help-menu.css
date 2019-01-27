@@ -1,0 +1,180 @@
+#help-container
+{
+    display: none;
+    
+    position: absolute;
+
+    width: 480px;
+  
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    margin: 0 auto;
+    
+    border: solid 1px black;
+    border-radius: 10px;
+
+    -moz-box-shadow:     5px 5px 10px #00000080;
+    -webkit-box-shadow:  5px 5px 10px #00000080;
+    box-shadow:          5px 5px 10px #00000080;
+
+    z-index: 2;
+}
+
+#help-title-container
+{
+    height: 75px;
+    
+    padding: 10px;
+
+    text-align: center;
+    
+    border-radius: 10px 10px 0 0;
+
+    border-bottom: solid 1px black;
+
+    background-color: rgba(111, 173, 224, 0.902);
+}
+
+#help-title
+{
+    margin-bottom: 5px;
+}
+
+.help-sub-title
+{
+    display: none;
+
+    width: 300px;
+    margin: auto;
+
+    font-size: 18px;
+}
+
+#help-sub-title-0
+{
+    display: block;
+}
+
+#rule-1-container, #rule-2-container, #numberphile-container
+{
+   display: none;
+}
+
+#objective-summary, #rule-1-summary, #rule-2-summary, #numberphile-summary
+{    
+    padding: 15px;
+
+    text-align: center;
+}
+
+#objective-img-container, #rule-1-img-container, #rule-2-img-container
+{   
+    padding-left: 110px;
+    padding-bottom: 10px;
+}
+
+#objective-img, #rule-1-img, #rule-2-img
+{  
+    width: 270px;
+    height: auto;
+    
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+#numberphile-img
+{
+    position: relative;
+    
+    display: inline-block;
+    
+    width: 110px;
+    height: auto;
+
+    top: 5px;
+}
+
+#numberphile-video
+{
+    position: relative;
+
+    border: 1px solid black;
+
+    border-radius: 10px;
+
+    z-index: 3;
+}
+
+#warning-msg
+{
+    color: #c50202;
+
+    font-size: 14px;
+}
+
+#page-left
+{
+    position: absolute;
+    
+    width: 50%;
+    height: 78%;
+
+}
+
+#page-right
+{
+    position: absolute;
+
+    left: 50%;
+    
+    width: 50%;
+    height: 78%;
+}
+
+#page-left:hover
+{
+    cursor: url('../../images/png/left.png'), e-resize;
+}
+
+#page-right:hover
+{
+    cursor: url('../../images/png/right.png'), w-resize;
+}
+
+.page-selector
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 200px;
+
+    background-color: #c2c2c2;
+
+    border-top: 1px solid black;
+
+    border-radius: 0 0 10px 10px;
+}
+
+.page-button
+{
+    width: 15px;
+    
+    border-radius: 50%;
+
+    border-color: rgb(133, 131, 131);
+
+    margin-right: 20px;
+
+    background-color: rgba(111, 173, 224, 0.9);
+}
+
+#page-1
+{
+    background-color: #2a7cb3;
+}
+
+.page-button:focus, #return-button:focus
+{
+    outline: 0;
+}
