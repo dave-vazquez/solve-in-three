@@ -1,0 +1,60 @@
+/* ******************************************************************* */
+/*                         INTERACTIVE-ELEMENTS                        */
+/* ******************************************************************* */
+
+.position {
+
+    float: left;
+
+    opacity: 1;
+
+    width: 125px;
+    height: 125px;
+
+    margin: -7px 2px;
+
+    border: 1px solid #d1d1d1; /* a7a6a6 */
+    border-radius: 50%;
+
+    -moz-box-shadow:     inset 0px 0px 0px rgba(0, 0, 0, 0.33);
+    -webkit-box-shadow:  inset 0px 0px 0px rgba(0, 0, 0, 0.33);
+    box-shadow:          inset 0px 0px 0px rgba(0, 0, 0, 0.33);
+
+    z-index: 0;
+}
+
+.coin {
+
+    position: relative;
+    
+    pointer-events: none;
+    
+    width: 128px;
+    height: 128px;
+
+    opacity: 0;
+
+    margin-left: -4px;
+    margin-top: -4px; 
+
+    border: 1px solid rgba(86, 97, 255, 0.521);
+    border-radius: 50%;
+
+    -moz-box-shadow:     2px 2px 5px rgba(0, 0, 0, 0.33);
+    -webkit-box-shadow:  2px 2px 5px rgba(0, 0, 0, 0.33);
+    box-shadow:          2px 2px 5px rgba(0, 0, 0, 0.33);
+
+    background-color: #3498DB; 
+
+    z-index: 0;
+}
+
+#coin0, #coin1, #coin2
+{
+    left: -1500px;
+}
+
+#coin3, #coin4, #coin5
+{
+    left: 1500px;
+}
