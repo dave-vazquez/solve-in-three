@@ -278,7 +278,10 @@ const activateHintButton = start =>
             backgroundColor: '#c2c2c2'
         });
 
-        setTimeout(() => $(elements.hintButtonImg).attr('src', './images/hints-black.png'), 300);
+        setTimeout(() => {
+            $(elements.hintButtonImg).attr('src', './images/hints-black.png');
+            console.log($(elements.hintButtonImg).attr('src'));
+        }, 300);
 
     }, start);
 }
@@ -292,7 +295,10 @@ const deactivateHintButton = start =>
             backgroundColor: '#d1d1d1'
         });
 
-        setTimeout(() => $(elements.hintButtonImg).attr('src', './images/no-hints-black.png'),300);
+        setTimeout(() => {
+            $(elements.hintButtonImg).attr('src', './images/no-hints-black.png');
+            console.log($(elements.hintButtonImg).attr('src'));
+        }, 300);
 
     }, start);
 }
