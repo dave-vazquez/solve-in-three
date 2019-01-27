@@ -2,6 +2,27 @@
 /*                                INTRO                                */
 /* ******************************************************************* */
 
+#start-button
+{
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 1px solid black;
+    border-radius: 5px;
+
+    padding: 2px 6px 4px 6px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    background-color: #ffffff;
+
+    z-index: 3;
+}
+
 #title-container {
 
     position: absolute;
@@ -38,36 +59,22 @@
     display: none;
 
     font-size: 22px;
-}
 
-#intro-msg-0
-{
-    margin-left: 50px;
-    
-    font-size: 28px;
-}
-
-#intro-msg-1, #intro-msg-2
-{
-    margin-left: 50px;
-}
-
-#intro-msg-2
-{
     margin-left: 50px;
 }
 
 #intro-msg-3
 {
     margin-top: -15px;
+    margin-left: 0px;
 }
 
-#intro-msg-9
-{
-    margin-top: -15px;
+#intro-msg-0
+{ 
+    font-size: 28px;
 }
 
-#intro-msg-11
+#intro-msg-12
 {
-    margin-left: 50px;
+    margin-top: 15px;
 }
