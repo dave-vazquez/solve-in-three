@@ -47,7 +47,7 @@ export default class HelpView
         $(this.currentPage()).fadeOut(250);
 
         if(this.atlastPage())
-            this.pageNum === 0;
+            this.pageNum = 0;
         else
             this.pageNum++;
 
@@ -62,7 +62,7 @@ export default class HelpView
         $(this.currentPage()).fadeOut(250);
 
         if(this.atfirstPage())
-            this.pageNum === 3;
+            this.pageNum = 3;
         else
             this.pageNum--;
 
@@ -74,6 +74,7 @@ export default class HelpView
 
     currentPage()
     {
+        
         return this.helpMenuPages[this.pageNum];
     }
 
@@ -119,4 +120,3 @@ function closeHelpMenu(evt)
         console.log('CLOSED MENU');
     }
 }
-
