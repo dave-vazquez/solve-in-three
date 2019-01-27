@@ -2,19 +2,25 @@
 /*                           MISC.                                     */
 /* ******************************************************************* */
 
-.margin-left-180px
+.margin-top-0px
 {
-    margin-left: 180px;
+    margin-top: 0px;
 }
 
-.margin-left-120px
+.margin-left-204px
 {
-    margin-left: 120px;
+    margin-top: 0px;
+    margin-left: 196px;
 }
 
-.margin-left-60px
+.margin-left-136px
 {
-    margin-left: 60px;
+    margin-left: 131px;
+}
+
+.margin-left-68px
+{
+    margin-left: 66px;
 }
 
 .clear-fix:after
