@@ -12,7 +12,14 @@ import GameController from './controllers/GameController.js'
 
 export const game = new GameController();
 
-animateIntro();
+$('#start-button').on('click', ()=>
+{
+    $('#start-button').fadeOut(100);
+
+    animateIntro();
+})
+
+//animateIntro();
 
 document.addEventListener('next-attempt-started', async () =>
 {
@@ -36,5 +43,3 @@ $(document).mouseleave(() =>
     if(game.activeCoin.isActive)
         game.forceCoinRelease()
 });
-
-
