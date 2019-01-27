@@ -59,7 +59,7 @@ export default class ProgressMessageView
         }
         else {
             elements.progressMessage1.innerText = `You solved the puzzle in ${this.numMoves} moves.`;
-            elements.progressMessage2.innerText = 'But can you solve it in 3...';
+            elements.progressMessage2.innerText = 'But can you solve it in 3?';
         }
     }
 
@@ -88,5 +88,3 @@ elements.progressContinueButton.addEventListener('click', () =>
 
     document.dispatchEvent(new Event('next-attempt-started'));
 });
-
-
