@@ -1,15 +1,20 @@
-/* *************************************************************************************************** */
-/*                       ATTEMPTS VIEW                                                                 */
-/* *************************************************************************************************** */
+console.log('attemptsView.js');
 
 import {elements} from './base.js';
 
-export const incrementAttempts = (attempts) =>
-{
-    elements.attempts.innerText = attempts;
-}
+/* *************************************************************************************************** */
+/*                                         ATTEMPTS VIEW                                               */
+/* *************************************************************************************************** */
 
-export const resetAttempts = () =>
+export default class AttemptsView
 {
-    elements.attempts.innerText = '0';
+    incrementAttempts(attempts)
+    {
+        elements.attempts.innerText = attempts;
+    }
+
+    resetAttempts()
+    {
+        elements.attempts.innerText = '0;'
+    }
 }
