@@ -86,7 +86,7 @@ export default class GameController
             this.returnCoinToOrigin();
     
         if(this.hintsEnabled) 
-            positionView.concealOpenPositions(board.openPositions);
+            positionView.concealOpenPositions([...board.openPositions, this.activeCoin.origin]);
 
         coinView.lowerCoin(this.activeCoin.id);
     }
@@ -132,7 +132,7 @@ export default class GameController
     disableOpenPosition(dropPosition)
     {
         positionView.disableDrop(dropPosition);
-        positionView.disableDrop(board.openPositions);
+        positionView.disableDrop([...board.openPositions, this.activeCoin.origin]);
     }
 
     incrementMoves()
@@ -181,16 +181,16 @@ export default class GameController
 
         coinView.raiseCoin(this.activeCoin.id);
 
-        positionView.enableDrop(board.openPositions);
+        positionView.enableDrop([...board.openPositions, this.activeCoin.origin]);
         
         if(this.hintsEnabled) 
-            positionView.revealOpenPositions(board.openPositions);
+            positionView.revealOpenPositions([...board.openPositions, this.activeCoin.origin]);
     }
 
     returnCoinToOrigin()
     {
         board.addCoinTo(this.activeCoin.origin, this.activeCoin.id);
-        positionView.disableDrop(board.openPositions);
+        positionView.disableDrop([...board.openPositions, this.activeCoin.origin]);
     }
 
     resetBoard()
