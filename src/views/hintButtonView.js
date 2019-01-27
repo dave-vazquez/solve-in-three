@@ -14,7 +14,7 @@ export default class HintButtonView
     {
         if(game.hintsEnabled)
         {
-            $(elements.hintButtonImg).attr('src', './images/png/no-hints-black.png')
+            $(elements.hintButtonImg).attr('src', './images/no-hints-black.png')
             
             $(elements.hintButton).css({
                 boxShadow: 'none',
@@ -23,7 +23,7 @@ export default class HintButtonView
         }
         else
         {
-            $(elements.hintButtonImg).attr('src', './images/png/hints-black.png')
+            $(elements.hintButtonImg).attr('src', './images/hints-black.png')
             
             $(elements.hintButton).css({
                 boxShadow: 'inset 2px 2px 2px rgba(0, 0, 0, 0.33)',
@@ -38,7 +38,7 @@ export default class HintButtonView
     
     resetHintButton()
     {
-        $(elements.hintButtonImg).attr('src', './images/png/no-hints-black.png')
+        $(elements.hintButtonImg).attr('src', './images/no-hints-black.png')
             
         $(elements.hintButton).css({
             boxShadow: 'none',
