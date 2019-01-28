@@ -2,13 +2,22 @@
 /*                                INTRO                                */
 /* ******************************************************************* */
 
-#start-button
+#start-button-container
 {
     position: fixed;
 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    z-index: 2;
+}
+
+#intro-button, #start-button
+{
+    float: left;
+
+    margin: 4px;
 
     border: 1px solid black;
     border-radius: 5px;
@@ -19,8 +28,6 @@
     font-weight: bold;
 
     background-color: #ffffff;
-
-    z-index: 3;
 }
 
 #title-container {
