@@ -3,6 +3,7 @@ console.log('index.js');
 import $ from 'jquery';
 import {elements} from './views/base.js';
 import {animateIntro} from './transitions/intro-2.js';
+import {startGame} from './transitions/startGame.js';
 import {animateTransition} from './transitions/transitionNewAttempt.js';
 import GameController from './controllers/GameController.js'
 
@@ -12,14 +13,19 @@ import GameController from './controllers/GameController.js'
 
 export const game = new GameController();
 
-$('#start-button').on('click', ()=>
+$('#intro-button').on('click', () =>
 {
-    $('#start-button').fadeOut(100);
+    $('#start-button-container').fadeOut(400);
 
     animateIntro();
-})
+});
 
-//animateIntro();
+$('#start-button').on('click', () =>
+{
+    $('#start-button-container').fadeOut(400);
+
+    startGame();
+});
 
 document.addEventListener('next-attempt-started', async () =>
 {
@@ -43,3 +49,5 @@ $(document).mouseleave(() =>
     if(game.activeCoin.isActive)
         game.forceCoinRelease()
 });
+
+
