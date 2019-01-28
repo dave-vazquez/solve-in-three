@@ -66,6 +66,8 @@
 
     display: none;
 
+    display: none;
+
     height: 40px;
     width: 247px;
 
@@ -161,6 +163,8 @@
 #hint-message-container
 {    
     position: absolute;
+
+    display: none;
 
     height: 40px;
     width: 285px;
