@@ -133,171 +133,171 @@ export const animateIntro = () =>
     fadeTimerMessageContainer(68500, 'in');
     fadeTimerMessage(68500, 'in', 0);
     fadeTimerMessage(68500, 'in', 1);
-    fadeTimerMessage(70500, 'out', 0);
-    fadeTimerMessage(70500, 'out', 1);
-    fadeTimerMessageContainer(70500, 'out');
+    fadeTimerMessage(76500, 'out', 0);
+    fadeTimerMessage(76500, 'out', 1);
+    fadeTimerMessageContainer(76500, 'out');
     
-    changeCoinColor(72500, 3, 'light', 100);
-    raiseCoin(72500, 3);
-    startTimer(73500);
-    stopTimer(77500);
-    changeCoinColor(77500, 3, 'default', 400);
-    lowerCoin(77500, 3, 400);
-    fadeTimerArrow(78500, 'out');
+    changeCoinColor(78500, 3, 'light', 100);
+    raiseCoin(78500, 3);
+    startTimer(79500);
+    stopTimer(83500);
+    changeCoinColor(83500, 3, 'default', 400);
+    lowerCoin(83500, 3, 400);
+    fadeTimerArrow(84500, 'out');
 
     // MOVES
-    fadeMovesArrow(80500, 'in');
-    fadeMovesContainer(80500, 'in');
+    fadeMovesArrow(86500, 'in');
+    fadeMovesContainer(86500, 'in');
 
-    fadeMovesMessageContainer(82500, 'in');
-    fadeMovesMessage(82500, 'in', 0);
-    fadeMovesMessage(82500, 'in', 1);
-    fadeMovesMessage(85500, 'out', 0);
-    fadeMovesMessage(85500, 'out', 1);
-    fadeMovesMessageContainer(85500, 'out');
+    fadeMovesMessageContainer(88500, 'in');
+    fadeMovesMessage(88500, 'in', 0);
+    fadeMovesMessage(88500, 'in', 1);
+    fadeMovesMessage(96500, 'out', 0);
+    fadeMovesMessage(96500, 'out', 1);
+    fadeMovesMessageContainer(96500, 'out');
     
-    changeCoinColor(87500, 0, 'light');
-    slideCoin(87500, 0, -112, 194, 600);
-    changeCoinColor(88100, 0, 'default');
-    lowerCoin(88100, 0);
-    fadeInMoveBlock(88200, 1, 400);
+    changeCoinColor(98500, 0, 'light');
+    slideCoin(98500, 0, -112, 194, 600);
+    changeCoinColor(99100, 0, 'default');
+    lowerCoin(99100, 0);
+    fadeInMoveBlock(99200, 1, 400);
     
-    changeCoinColor(88600, 2, 'light');
-    slideCoin(88600, 2, 222, -258, 600);
-    changeCoinColor(89200, 2, 'default');
-    lowerCoin(89200, 2);
-    fadeInMoveBlock(89300, 2, 400);
+    changeCoinColor(100200, 2, 'light');
+    slideCoin(100200, 2, 222, -258, 600);
+    changeCoinColor(100800, 2, 'default');
+    lowerCoin(100800, 2);
+    fadeInMoveBlock(100900, 2, 400);
     
-    changeCoinColor(89700, 3, 'light');
-    slideCoin(89700, 3, -112, 323, 600);
-    changeCoinColor(90300, 3, 'default');
-    lowerCoin(90300, 3);
-    fadeInMoveBlock(90400, 3, 400);
+    changeCoinColor(101900, 3, 'light');
+    slideCoin(101900, 3, -112, 323, 600);
+    changeCoinColor(102500, 3, 'default');
+    lowerCoin(102500, 3);
+    fadeInMoveBlock(102600, 3, 400);
     
-    changeCoinColor(90800, 0, 'light');
-    slideCoin(90800, 0, 112, -65, 600);
-    changeCoinColor(91400, 0, 'default');
-    lowerCoin(91400, 0);
-    fadeInMoveBlock(91500, 4, 400);
+    changeCoinColor(103600, 0, 'light');
+    slideCoin(103600, 0, 112, -65, 600);
+    changeCoinColor(104200, 0, 'default');
+    lowerCoin(104200, 0);
+    fadeInMoveBlock(104300, 4, 400);
     
-    changeCoinColor(91900, 2, 'light');
-    slideCoin(91900, 2, 0, -258, 600);
-    changeCoinColor(92500, 2, 'default');
-    lowerCoin(92500, 2);
-    fadeInMoveBlock(92600, 5, 400);
+    changeCoinColor(105300, 2, 'light');
+    slideCoin(105300, 2, 0, -258, 600);
+    changeCoinColor(105900, 2, 'default');
+    lowerCoin(105900, 2);
+    fadeInMoveBlock(106000, 5, 400);
     
-    fadeOutMoveBlocks(94600);
-    fadeMovesArrow(94600, 'out');
+    fadeOutMoveBlocks(107000);
+    fadeMovesArrow(107000, 'out');
 
     // ATTEMPTS
-    fadeAttemptsArrow(96600, 'in');
-    fadeAttemptsContainer(96600, 'in');
+    fadeAttemptsArrow(109000, 'in');
+    fadeAttemptsContainer(109000, 'in');
 
-    fadeAttemptsMessageContainer(98600, 'in');
-    fadeAttemptsMessage(98600, 'in', 0);
-    fadeAttemptsMessage(98600, 'in', 1);
-    fadeAttemptsMessage(101600, 'out', 0);
-    fadeAttemptsMessage(101600, 'out', 1);
-    fadeAttemptsMessageContainer(101600, 'out');
+    fadeAttemptsMessageContainer(111000, 'in');
+    fadeAttemptsMessage(111000, 'in', 0);
+    fadeAttemptsMessage(111000, 'in', 1);
+    fadeAttemptsMessage(119000, 'out', 0);
+    fadeAttemptsMessage(119000, 'out', 1);
+    fadeAttemptsMessageContainer(119000, 'out');
 
-    incrementAttempts(102600);
-    fadeAttemptCount(106100);
-    fadeAttemptsArrow(106100, 'out');
+    incrementAttempts(121000);
+    fadeAttemptCount(124500);
+    fadeAttemptsArrow(124500, 'out');
 
     // HINTS
-    fadeHintArrow(109100, 'in');
-    fadeHintContainer(109100, 'in');
+    fadeHintArrow(126500, 'in');
+    fadeHintContainer(126500, 'in');
 
-    fadeHintsMessageContainer(111100, 'in');
-    fadeHintMessage(111100, 'in', 0);
-    fadeHintMessage(111100, 'in', 1);
-    fadeHintMessage(115100, 'out', 0);
-    fadeHintMessage(115100, 'out', 1);
-    fadeHintsMessageContainer(115100, 'out');
-    arrangeCoins(115100, 'default');
+    fadeHintsMessageContainer(128500, 'in');
+    fadeHintMessage(128500, 'in', 0);
+    fadeHintMessage(128500, 'in', 1);
+    fadeHintMessage(136500, 'out', 0);
+    fadeHintMessage(136500, 'out', 1);
+    fadeHintsMessageContainer(136500, 'out');
+    arrangeCoins(136500, 'default');
 
-    activateHintButton(117100);
-
-    // COIN 
-    changeCoinColor(119100, 0, 'light');
-    raiseCoin(119100, 0);
-    bevelHintPosition(119100, 'in', 2);
-    bevelHintPosition(119100, 'in', 6);
-    bevelHintPosition(119100, 'in', 14);
-    bevelHintPosition(119100, 'in', 17);
-    bevelHintPosition(119100, 'in', 18);
-
-    changeCoinColor(121100, 0, 'default');
-    lowerCoin(121100, 0);
-    bevelHintPosition(121100, 'out', 2);
-    bevelHintPosition(121100, 'out', 6);
-    bevelHintPosition(121100, 'out', 14);
-    bevelHintPosition(121100, 'out', 17);
-    bevelHintPosition(121100, 'out', 18);
+    activateHintButton(138500);
 
     // COIN 
-    changeCoinColor(122100, 1, 'light');
-    raiseCoin(122100, 1);
-    bevelHintPosition(122100, 'in', 5);
-    bevelHintPosition(122100, 'in', 7);
-    bevelHintPosition(122100, 'in', 14);
-    bevelHintPosition(122100, 'in', 17);
-    bevelHintPosition(122100, 'in', 18);
+    changeCoinColor(140500, 0, 'light');
+    raiseCoin(140500, 0);
+    bevelHintPosition(140500, 'in', 2);
+    bevelHintPosition(140500, 'in', 6);
+    bevelHintPosition(140500, 'in', 14);
+    bevelHintPosition(140500, 'in', 17);
+    bevelHintPosition(140500, 'in', 18);
 
-    changeCoinColor(124100, 1, 'default');
-    lowerCoin(124100, 1);
-    bevelHintPosition(124100, 'out', 5);
-    bevelHintPosition(124100, 'out', 7);
-    bevelHintPosition(124100, 'out', 14);
-    bevelHintPosition(124100, 'out', 17);
-    bevelHintPosition(124100, 'out', 18);
+    changeCoinColor(142500, 0, 'default');
+    lowerCoin(142500, 0);
+    bevelHintPosition(142500, 'out', 2);
+    bevelHintPosition(142500, 'out', 6);
+    bevelHintPosition(142500, 'out', 14);
+    bevelHintPosition(142500, 'out', 17);
+    bevelHintPosition(142500, 'out', 18);
 
     // COIN 
-    changeCoinColor(125100, 2, 'light');
-    raiseCoin(125100, 2);
-    bevelHintPosition(125100, 'in', 1);
-    bevelHintPosition(125100, 'in', 5);
-    bevelHintPosition(125100, 'in', 8);
-    bevelHintPosition(125100, 'in', 17);
-    bevelHintPosition(125100, 'in', 18);
+    changeCoinColor(143500, 1, 'light');
+    raiseCoin(143500, 1);
+    bevelHintPosition(143500, 'in', 5);
+    bevelHintPosition(143500, 'in', 7);
+    bevelHintPosition(143500, 'in', 14);
+    bevelHintPosition(143500, 'in', 17);
+    bevelHintPosition(143500, 'in', 18);
 
-    changeCoinColor(127100, 2, 'default');
-    lowerCoin(127100, 2);
-    bevelHintPosition(127100, 'out', 1);
-    bevelHintPosition(127100, 'out', 5);
-    bevelHintPosition(127100, 'out', 8);
-    bevelHintPosition(127100, 'out', 17);
-    bevelHintPosition(127100, 'out', 18);
+    changeCoinColor(145500, 1, 'default');
+    lowerCoin(145500, 1);
+    bevelHintPosition(145500, 'out', 5);
+    bevelHintPosition(145500, 'out', 7);
+    bevelHintPosition(145500, 'out', 14);
+    bevelHintPosition(145500, 'out', 17);
+    bevelHintPosition(145500, 'out', 18);
 
-    deactivateHintButton(130100);
-    fadeHintArrow(131100, 'out');
+    // COIN 
+    changeCoinColor(146500, 2, 'light');
+    raiseCoin(146500, 2);
+    bevelHintPosition(146500, 'in', 1);
+    bevelHintPosition(146500, 'in', 5);
+    bevelHintPosition(146500, 'in', 8);
+    bevelHintPosition(146500, 'in', 17);
+    bevelHintPosition(146500, 'in', 18);
+
+    changeCoinColor(148500, 2, 'default');
+    lowerCoin(148500, 2);
+    bevelHintPosition(148500, 'out', 1);
+    bevelHintPosition(148500, 'out', 5);
+    bevelHintPosition(148500, 'out', 8);
+    bevelHintPosition(148500, 'out', 17);
+    bevelHintPosition(148500, 'out', 18);
+
+    deactivateHintButton(149500);
+    fadeHintArrow(150500, 'out');
 
     // OUTRO
-    fadeIntroMessage(132100, 'in', 9);
-    fadeIntroMessage(134100, 'out', 9);
+    fadeIntroMessage(152500, 'in', 9);
+    fadeIntroMessage(154500, 'out', 9);
 
-    fadeIntroMessage(136100, 'in', 10);
-    fadeIntroMessage(137100, 'in', 11);
+    fadeIntroMessage(156500, 'in', 10);
+    fadeIntroMessage(158500, 'in', 11);
 
-    fadeIntroMessage(139100, 'out', 10);
-    fadeIntroMessage(139100, 'out', 11);
+    fadeIntroMessage(160500, 'out', 10);
+    fadeIntroMessage(160500, 'out', 11);
 
-    fadeIntroMessage(141100, 'in', 12);
+    fadeIntroMessage(162500, 'in', 12);
 
-    fadeIntroMessage(143100, 'out', 12);
-    fadeIntroMessageContainer(143100, 'out');
-    fadeHelpButton(143100, 'in');
+    fadeIntroMessage(164500, 'out', 12);
+    fadeIntroMessageContainer(164500, 'out');
+    fadeHelpButton(164500, 'in');
 
-    highlightCoins(144100, 'rows');
+    highlightCoins(165500, 'rows');
     
-    highlightCoin(145100, 0, 'light');
-    highlightCoin(145100, 1, 'light');
-    highlightCoin(145100, 2, 'light');
-    highlightCoin(145100, 3, 'light');
-    highlightCoin(145100, 4, 'light');
-    highlightCoin(145100, 5, 'light');
+    highlightCoin(166500, 0, 'light');
+    highlightCoin(166500, 1, 'light');
+    highlightCoin(166500, 2, 'light');
+    highlightCoin(166500, 3, 'light');
+    highlightCoin(166500, 4, 'light');
+    highlightCoin(166500, 5, 'light');
     
-    enableAll(146600);
+    enableAll(168000);
    
 }
 
