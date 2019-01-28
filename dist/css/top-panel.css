@@ -57,6 +57,8 @@
 {    
     position: absolute;
 
+    display: none;
+
     height: 40px;
     width: 298px;
 
