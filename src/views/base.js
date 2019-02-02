@@ -8,6 +8,14 @@ import $ from 'jquery';
 export const elements = 
 {
     /* ******************************************************************* */
+    /*                            PRE-GAME                                 */
+    /* ******************************************************************* */
+
+    playIntroButton: document.getElementById('intro-button'),
+    startPuzzleButton: document.getElementById('start-button'),
+    introButtonContainer: document.getElementById('start-button-container'),
+    
+    /* ******************************************************************* */
     /*                             INTRO                                   */
     /* ******************************************************************* */
     
@@ -37,8 +45,6 @@ export const elements =
     hintMessageContainer: document.getElementById('hint-message-container'),
     hintMessage: id => document.getElementById(`hint-msg-${id}`),
     hintArrow: document.getElementById('hint-arrow'),
-
-    //allIcons: document.querySelectorAll('.icon'),
 
     /* ******************************************************************* */
     /*                         GAME-CONTAINER                              */
@@ -162,8 +168,6 @@ export const elements =
 
         $('#game-container *').prop('disabled', true);
         $('.coin').css({pointerEvents: 'none'});
-
-        
     },
 
     blurBackground: function()
