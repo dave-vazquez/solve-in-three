@@ -81,10 +81,29 @@ export default class ProgressMessageView
 /*                                        EVENT LISTENER                                               */
 /* *************************************************************************************************** */
 
-elements.progressContinueButton.addEventListener('click', () =>
-{        
-    if(game.solvedInThree)
-        $(elements.progressMessageContainer).fadeOut(500);
+const bindContinueButtonEvent = (continueButton) =>
+{
+    $(continueButton).on('click', async () =>
+    {        
+        $(continueButton).off();
+        
+        if(game.solvedInThree)
+        {
+            $(elements.progressMessageContainer).fadeOut(500);
+            $(elements.gameContainer).fadeOut(500);
+            setTimeout(()=> document.location.reload(), 500);
+        }
+        else
+        {
+            game.resetBoard();
+            
+            await animateTransition();
+            
+            game.startTimer();
 
-    document.dispatchEvent(new Event('next-attempt-started'));
-});
+            bindContinueButtonEvent(continueButton);
+        }
+    });
+}
+
+bindContinueButtonEvent(elements.progressContinueButton);
