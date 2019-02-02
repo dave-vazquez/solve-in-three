@@ -13,41 +13,22 @@ import GameController from './controllers/GameController.js'
 
 export const game = new GameController();
 
-$('#intro-button').on('click', () =>
+$(elements.playIntroButton).on('click', () =>
 {
-    $('#start-button-container').fadeOut(400);
+    $(elements.introButtonContainer).fadeOut(400);
+    $(elements.playIntroButton).off();
+    $(elements.startPuzzleButton).off();
 
     animateIntro();
 });
 
-$('#start-button').on('click', () =>
+$(elements.startPuzzleButton).on('click', () =>
 {
-    $('#start-button-container').fadeOut(400);
+    $(elements.introButtonContainer).fadeOut(400);
+    $(elements.playIntroButton).off();
+    $(elements.startPuzzleButton).off();
 
     startGame();
-});
-
-document.addEventListener('next-attempt-started', async () =>
-{
-    if(game.solvedInThree)
-    {
-        $(elements.gameContainer).fadeOut(500);
-        setTimeout(()=> document.location.reload(), 500);
-    }
-    else
-    {
-        game.resetBoard();
-        
-        await animateTransition();
-        
-        game.startTimer();
-    }
-});
-
-$(document).mouseleave(() =>
-{
-    if(game.activeCoin.isActive)
-        game.forceCoinRelease()
 });
 
 
