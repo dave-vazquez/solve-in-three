@@ -45,6 +45,11 @@ export default class CoinView
             game.handleCoinRevert();
             return 'invalid';
         }});  
+        
+        $(document).mouseleave(() => {  
+            if(game.activeCoin.isActive)
+                game.forceCoinRelease()
+        });
     }
 
     stopAnimation(coinID)
