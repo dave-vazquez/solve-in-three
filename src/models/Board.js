@@ -1,5 +1,3 @@
-console.log('board.js');
-
 import Coin from "./Coin";
 import Position from "./Position";
 
@@ -69,7 +67,6 @@ export default class Board
 
         this.addOccupiedPosID(posID);
 
-        console.log('ADDED OCC-POSITION:', posID, 'TO:', this.occupiedPosIDs);
     }
 
     removeCoinFrom(posID)
@@ -80,8 +77,6 @@ export default class Board
         
         this.removeOccupiedPosID(posID);
         this.initializeOpenPositions();
-
-        console.log('REMOVED OCC-POSITION:', posID, 'FROM:', this.occupiedPosIDs);
 
         return removedCoin;
     }
