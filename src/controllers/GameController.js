@@ -1,5 +1,3 @@
-console.log('GameController.js');
-
 import Board from '../models/Board';
 
 import CoinView from '../views/coinView.js';
@@ -107,9 +105,6 @@ export default class GameController
     }
 
     handleCoinRevert() {
-
-        //console.log('COIN-REVERTED');
-        // problem here, when a coin is isolated and moved slightly the coin-reverted error message will fire
         
         if(this.activeCoin.dropped === false) 
         {
