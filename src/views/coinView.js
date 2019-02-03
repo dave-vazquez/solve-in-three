@@ -1,5 +1,3 @@
-console.log('coinView.js');
-
 import $ from 'jquery';
 import 'jquery-ui/ui/widgets/draggable';
 import 'jquery-ui/ui/effects/effect-highlight';
@@ -45,7 +43,7 @@ export default class CoinView
             game.handleCoinRevert();
             return 'invalid';
         }});  
-        
+
         $(document).mouseleave(() => {  
             if(game.activeCoin.isActive)
                 game.forceCoinRelease()
@@ -110,9 +108,6 @@ export default class CoinView
         coin = elements.coin(coinID); // "active coin" copy
     
         this.resetCoinProperties(1, 0, 'auto', coinID);
-
-        // coinID < 3 ? $(coin).css({opacity: 1, right: '0px', pointerEvents: 'auto'}):
-        //              $(coin).css({opacity: 1, left: '0px', pointerEvents: 'auto'}) ;
         
         this.init(coin);
     }
@@ -127,8 +122,6 @@ export default class CoinView
 
             this.resetCoinProperties(0, 1500, 'none', coinID);
             
-            // coinID < 3 ? $(elements.coin(coinID)).css({opacity: 0, right: '1500px'}):
-            //              $(elements.coin(coinID)).css({opacity: 0, left: '1500px'}) ;
         });
 
         elements.refresh();
