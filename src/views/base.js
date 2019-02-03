@@ -1,4 +1,3 @@
-console.log('base.js');
 import $ from 'jquery';
 
 /* *************************************************************************************************** */
@@ -8,7 +7,7 @@ import $ from 'jquery';
 export const elements = 
 {
     /* ******************************************************************* */
-    /*                            PRE-GAME                                 */
+    /*                           PRE-GAME                                 */
     /* ******************************************************************* */
 
     playIntroButton: document.getElementById('intro-button'),
@@ -19,12 +18,11 @@ export const elements =
     /*                             INTRO                                   */
     /* ******************************************************************* */
     
+    titleContainer: document.getElementById('title-container'),
     title: id => document.getElementById(`title-${id}`),
 
     introMessageContainer: document.getElementById('intro-msg-container'),
     introMessages: document.querySelectorAll('.intro-msg'),
-    welcomeMessage: document.getElementById('welcome-message'),
-    rulesMessage: document.getElementById('rules-message'),
 
     timerContainer: document.getElementById('timer-container'),
     timerMessageContainer: document.getElementById('timer-message-container'),
@@ -99,9 +97,9 @@ export const elements =
 
     numberphileContainer: document.getElementById('numberphile-container'),
 
-    returnButton: document.getElementById('return-button'),
-    leftButton: document.querySelector('.click-left'),
-    rightButton: document.querySelector('.click-right'),
+    // returnButton: document.getElementById('return-button'),
+    // leftButton: document.querySelector('.click-left'),
+    // rightButton: document.querySelector('.click-right'),
 
     /* ******************************************************************* */
     /*                           BOTTOM-PANEL                              */
@@ -122,10 +120,9 @@ export const elements =
     /* ******************************************************************* */
 
     progressMessageContainer: document.getElementById('progress-message-container'),
-
-    helpSubTitle: document.getElementById('help-title-2'),
     progressMessage1: document.getElementById('progress-message-1'),
     progressMessage2: document.getElementById('progress-message-2'),
+
     stat1: document.getElementById('stat-1'),
     stat2: document.getElementById('stat-2'),
     stat3: document.getElementById('stat-3'),
@@ -152,6 +149,36 @@ export const elements =
     /*                             FUNCTIONS                               */
     /* ******************************************************************* */
 
+    initializeSelectors: function(selector)
+    {
+        switch(selector)
+        {
+            case('intro-messages'): this.introMessages = document.querySelectorAll('.intro-msg'); 
+                                    break;
+
+            case('progress-message'): this.progressMessage1 = document.getElementById('progress-message-1');
+                                      this.progressMessage2 = document.getElementById('progress-message-2');
+                                    
+                                      this.stat1 = document.getElementById('stat-1');
+                                      this.stat2 = document.getElementById('stat-2');
+                                      this.stat3 = document.getElementById('stat-3');
+                                    
+                                      this.progressContinueButton = document.getElementById('continue-button'); 
+                                      break;
+            
+            case('help-menu'): this.objectiveContainer = document.getElementById('objective-container');
+                               this.rule1Container = document.getElementById('rule-1-container');
+                               this.rule2Container = document.getElementById('rule-2-container');
+                               this.numberphileContainer = document.getElementById('numberphile-container'); 
+                               
+                               this.helpButton = document.getElementById('help-button');
+                               this.pageLeft = document.getElementById('page-left');
+                               this.pageRight = document.getElementById('page-right'); 
+                               break;
+
+        }
+    },
+
     refresh: function() {
 
         this.allPositions = document.querySelectorAll('.position');
@@ -168,6 +195,8 @@ export const elements =
 
         $('#game-container *').prop('disabled', true);
         $('.coin').css({pointerEvents: 'none'});
+
+        
     },
 
     blurBackground: function()
