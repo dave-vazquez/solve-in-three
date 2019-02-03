@@ -10,6 +10,7 @@ A coin-puzzle game where you are challenged to arrange a set of six coins into t
 ![Solve-In-Three](rule-1.gif)
 
 <p>Rule 2) <strong> You cannot move a coin if it is surrounded by other coins.</strong></p>
+
 ![Solve-In-Three](rule-2.gif)
 
 <p><strong>Enable hints if you get stuck!</p>
