@@ -1,5 +1,3 @@
-console.log('transitionNewAttempt.js');
-
 import {elements} from '../views/base.js';
 import $ from 'jquery';
 
