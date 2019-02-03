@@ -45,7 +45,6 @@ export default class HelpView
 
     pageRight()
     {
-        console.log('PAGE RIGHT');
         $(this.currentPage()).fadeOut(250);
 
         if(this.atlastPage())
@@ -59,7 +58,6 @@ export default class HelpView
 
     pageLeft()
     {
-        console.log('PAGE LEFT');
         $(this.currentPage()).fadeOut(250);
 
         if(this.atfirstPage())
@@ -201,6 +199,5 @@ function closeHelpMenu(evt)
     if(!helpMenu.is(evt.target) && !helpButton.is(evt.target) && helpMenu.has(evt.target).length === 0)
     {
         helpView.closeHelpMenu();
-        console.log('CLOSED MENU');
     }
 }
