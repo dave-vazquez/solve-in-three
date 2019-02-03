@@ -1,5 +1,3 @@
-console.log('timerView.js');
-
 import {elements} from './base.js';
 import * as cookie from '../controllers/cookieController.js';
 
