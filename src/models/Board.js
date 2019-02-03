@@ -1,3 +1,4 @@
+
 import Coin from "./Coin";
 import Position from "./Position";
 
@@ -43,12 +44,12 @@ export default class Board
     {
         let coinID = -1;
         
-        for(let i = 0; i < 20; i++)
+        for(let posID = 0; posID < 20; posID++)
         {
-            this.add(new Position(i));
+            this.add(new Position(posID));
 
             if(this.occupiedPosIDs.includes(i))
-                this.addCoinTo(i, ++coinID);
+                this.addCoinTo(posID, ++coinID);
         }
     }
 
@@ -66,7 +67,6 @@ export default class Board
         this.board[x][y].addCoin(new Coin(coinID));
 
         this.addOccupiedPosID(posID);
-
     }
 
     removeCoinFrom(posID)
@@ -135,36 +135,27 @@ export default class Board
         let consecutiveOpenPositions = 0;
         let surroundingCoins = [];
 
-        // iterate through the coordinates of all surrounding positions
         for(let {adjX, adjY} of getAdjacentCoordinates(coinPosID, true))
         {
-            // if the coordinates are out of bounds, the coin is not blocked
             if(!inBounds(adjX, adjY))
                 return false; // return an empty array
             
-            // get the position from the board using the adjancent coordinates
             var adjacentPosition = this.board[adjX][adjY];
 
-            // if the adjacent position does not have a coin
             if(!adjacentPosition.hasCoin)
-                // increment consecutiveOpenPositions
                 consecutiveOpenPositions++;
             else 
             {
-                // reset consecutiveOpenPositions to '0'
                 consecutiveOpenPositions = 0;
-                // and push the 'id' of the adjacent coin to the blockingCoinsarray
                 surroundingCoins.push(adjacentPosition.getCoinID());
             }
             
-            // if two consecutive open positions are found, the coin is not blocked
             if(consecutiveOpenPositions === 2)
                 return false; // return an empty array
         }
 
         this.surroundingCoins = surroundingCoins.slice(0, 5);
 
-        // id's of all blocking coins will return if coin is not blocked
         return true;
     }
 
