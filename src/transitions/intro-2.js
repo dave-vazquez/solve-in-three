@@ -1,5 +1,3 @@
-console.log('intro.js');
-
 import {elements} from '../views/base.js';
 import $ from 'jquery';
 import 'jquery-shadow-animation/jquery.animate-shadow';
@@ -11,6 +9,9 @@ import 'jquery-shadow-animation/jquery.animate-shadow';
 export const animateIntro = () =>
 {
     disableAll(0);
+
+    renderIntroMessages(0);
+    renderTitle(0);
     
     bevelSweep(2000, 'all', 'in');
     bevelSweep(2800, 'all', 'out'); // 2000
@@ -305,15 +306,43 @@ export const animateIntro = () =>
 /*                                        ANIMATION FUNCTIONS                                          */
 /* *************************************************************************************************** */
 
-// const highlightHelpButton = (start) =>
-// {
-//     setTimeout(()=>
-//     {
-//         $(elements.helpButton).animate({backgroundColor: '#FFFF7F', boxShadow: '0 0 3px 5px #FFFF7F'}, 100);
-//         $(elements.helpButton).animate({backgroundColor: '#d1d1d1', boxShadow: '0 0 0 0 #FFFF7F'}, 500);
+const renderIntroMessages = start =>
+{
+    setTimeout(()=>
+    {
+        $(elements.introMessageContainer).html(`
+            <p id="intro-msg-0" class="intro-msg">Welcome to Solve in Three</p>
+            <p id="intro-msg-1" class="intro-msg">The goal of this puzzle
+            <p id="intro-msg-2" class="intro-msg">is to arrange these <strong>six coins</strong>...</p> 
+            <p id="intro-msg-3" class="intro-msg">...into the <strong>shape of a ring</strong>.</p>
+            <p id="intro-msg-4" class="intro-msg">There are two rules:</p>
+            <p id="intro-msg-5" class="intro-msg">A <strong>coin</strong> can <strong>only move</strong></p>
+            <p id="intro-msg-6" class="intro-msg">where it will touch <strong>two or more coins</strong>.</p>
+            <p id="intro-msg-7" class="intro-msg">And, a coin <strong>cannot move</strong></p>
+            <p id="intro-msg-8" class="intro-msg">if it's <strong>trapped</strong> by the <strong>surrounding coins</strong>.</p>
+            <p id="intro-msg-9" class="intro-msg">This puzzle can be solved in many ways.</p>
+            <p id="intro-msg-10" class="intro-msg">But there's only one way to solve it</p>
+            <p id="intro-msg-11" class="intro-msg"><strong>in three moves</strong>.</p>
+            <p id="intro-msg-12" class="intro-msg">Select a coin to start...</p>
+        `);
 
-//     }, start);
-// }
+        elements.initializeSelectors('intro-messages');
+
+    }, start);
+}
+
+const renderTitle = start =>
+{
+    setTimeout(()=>
+    {
+        $(elements.titleContainer).html(`
+            <div id="title">
+                <span id="title-0">Solve </span><span id="title-1">in </span><span id="title-2">Three</span>
+            </div>
+        `);
+
+    }, start);
+}
 
 const bevelHintPosition = (start, direction, posID) =>
 {
@@ -445,8 +474,6 @@ const incrementAttempts = start =>
         }, start + interval);
 
         start += interval;
-        
-        console.log((i + 1), ': start', start, 'interval', interval);
 
         return interval;
     }
@@ -635,8 +662,6 @@ const fadeMovesArrow = (start, direction, newDuration = 1000) =>
 {
     var movesArrow = $(elements.movesArrow);
 
-    console.log(movesArrow);
-
     movesArrow.queue()
 
     setTimeout(()=>
@@ -676,8 +701,6 @@ const fadeAttemptsArrow = (start, direction) =>
 const fadeHintArrow = (start, direction) =>
 {
     var hintArrow = $(elements.hintArrow);
-
-    console.log(hintArrow);
 
     setTimeout(()=>
     {
