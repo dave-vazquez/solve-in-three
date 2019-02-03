@@ -1,3 +1,4 @@
+
 import {elements} from '../views/base.js';
 import $ from 'jquery';
 import 'jquery-shadow-animation/jquery.animate-shadow';
@@ -5,6 +6,7 @@ import 'jquery-shadow-animation/jquery.animate-shadow';
 export const startGame = ()=>
 {
     disableAll(0);
+    renderIntroMessage(0);
     
     fadeTopPanel(2000, 'in');
     fadeBottomPanel(2000, 'in');
@@ -19,10 +21,9 @@ export const startGame = ()=>
     fadeTimerContainer(5800, 'in');
     fadeHintContainer(5800, 'in');
     fadeHelpButton(5800, 'in');
-
-    //fadeIntroMessageContainer(6800, 'in');
-    fadeIntroMessage(6800, 'in', 12);
-    fadeIntroMessage(8800, 'in', 12);
+    
+    fadeIntroMessage(6800, 'in', 0);
+    fadeIntroMessage(8800, 'in', 0);
     fadeIntroMessageContainer(8800, 'out');
 
     highlightCoins(9800, 'rows');
@@ -35,6 +36,19 @@ export const startGame = ()=>
     highlightCoin(10800, 5, 'light');
 
     enableAll(12300);
+}
+
+const renderIntroMessage = start =>
+{
+    setTimeout(()=>
+    {
+        $(elements.introMessageContainer).html(`
+            <p id="intro-msg-12" class="intro-msg">Select a coin to start...</p>
+        `);
+
+        elements.initializeSelectors('intro-messages');
+
+    }, start);
 }
 
 const fadeTopPanel = (start, type) =>
