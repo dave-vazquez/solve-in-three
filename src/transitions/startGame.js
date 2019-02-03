@@ -1,5 +1,3 @@
-console.log('startGame.js');
-
 import {elements} from '../views/base.js';
 import $ from 'jquery';
 import 'jquery-shadow-animation/jquery.animate-shadow';
