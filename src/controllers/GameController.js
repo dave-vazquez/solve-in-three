@@ -155,7 +155,6 @@ export default class GameController
 
     startTimer()
     {
-        console.log('STARTING TIMER');
         timerView.startTimer();
         this.timerStarted = true;
     }
