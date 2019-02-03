@@ -1,5 +1,3 @@
-console.log('hintButtonView.js');
-
 import $ from 'jquery';
 import {elements} from './base.js';
 import {game} from '../index.js';
