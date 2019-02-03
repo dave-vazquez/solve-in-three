@@ -1,8 +1,7 @@
-console.log('progressView.js');
-
 import $ from 'jquery';
 import {game} from '../index.js';
 import {elements} from '../views/base.js';
+import {animateTransition} from '../transitions/transitionNewAttempt';
 
 /* *************************************************************************************************** */
 /*                                        PROGRESS VIEW                                                */
@@ -21,6 +20,8 @@ export default class ProgressMessageView
     
     displayProgressMessage()
     {   
+        this.renderProgressMessage();
+        
         this.initializeGameStats();
     
         this.numMoves === 3 ? this.initializeProgressMessage(true) :
@@ -75,35 +76,74 @@ export default class ProgressMessageView
         $('#game-container *').prop('disabled', true);
         $('.coin').css({pointerEvents: 'none'});
     }
-}
 
-/* *************************************************************************************************** */
-/*                                        EVENT LISTENER                                               */
-/* *************************************************************************************************** */
+    renderProgressMessage()
+    {
+        if(elements.progressMessageContainer.hasChildNodes() === false)
+        {
+            $(elements.progressMessageContainer).html(`
+                <div id="progress-message-header">
+                    <h2 id="progress-message-1"></h2>
+                    <p  id="progress-message-2"></p>
+                </div>
+                <div class="stats-container">
+                    <table id="stats-table">
+                        <tr>
+                            <td id="stat-label-1"><img id="attempt-icon-prog" src="./images/attempts-black.png" alt="Attempts">Attempts:</td>
+                            <td id="stat-1"></td>
+                        <tr>
+                        <tr>
+                            <td id="stat-label-2"><img id="timer-icon-prog" src="./images/timer-black.png" alt="Timer">Time Elapsed:</td>
+                            <td id="stat-2"></td>
+                        </tr>
+                        <tr>
+                            <td id="stat-label-3"><img id="hints-icon-prog" src="./images/hints-black.png" alt="Hints">Hints Used:</td>
+                            <td id="stat-3"></td>
+                        </tr>
+                    </table>
+                </div>
+                <input id="continue-button" type="button" value="Continue"></input>
+            `);
 
-const bindContinueButtonEvent = (continueButton) =>
-{
-    $(continueButton).on('click', async () =>
-    {        
-        $(continueButton).off();
+            elements.initializeSelectors('progress-message');
+
+            this.bindContinueButtonEvent();
+        }
+    }
+
+    bindContinueButtonEvent()
+    {
+        var continueButton = elements.progressContinueButton;
         
-        if(game.solvedInThree)
-        {
-            $(elements.progressMessageContainer).fadeOut(500);
-            $(elements.gameContainer).fadeOut(500);
-            setTimeout(()=> document.location.reload(), 500);
-        }
-        else
-        {
-            game.resetBoard();
+        $(continueButton).on('click', async () =>
+        {        
+            $(continueButton).off();
             
-            await animateTransition();
-            
-            game.startTimer();
+            if(game.solvedInThree)
+            {
+                $(elements.progressMessageContainer).fadeOut(500);
+                $(elements.gameContainer).fadeOut(500);
 
-            bindContinueButtonEvent(continueButton);
-        }
-    });
+                setTimeout(()=> document.location.reload(), 500);
+            }
+            else
+            {
+                game.resetBoard();
+                
+                await animateTransition();
+                
+                game.startTimer();
+
+                this.removeProgressMessage();
+            }
+        });
+    }
+
+    removeProgressMessage()
+    {
+        var container = elements.progressMessageContainer;
+        
+        while(container.firstChild)
+            container.removeChild(container.firstChild);
+    }
 }
-
-bindContinueButtonEvent(elements.progressContinueButton);
