@@ -1,5 +1,3 @@
-console.log('positionView.js')
-
 import $ from 'jquery';
 import 'jquery-ui/ui/widgets/droppable';
 import 'jquery-shadow-animation/jquery.animate-shadow';
@@ -131,9 +129,7 @@ export default class PositionView
     }
 
     removeCoinsFrom(occupiedPositions)
-    {
-        console.log('OCCUPIED POSITIONS: ', occupiedPositions);
-        
+    {    
         occupiedPositions.forEach(posID =>
         {
             $(elements.position(posID)).children().remove();
