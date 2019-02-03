@@ -1,4 +1,3 @@
-console.log('attemptsView.js');
 
 import {elements} from './base.js';
 
