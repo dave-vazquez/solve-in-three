@@ -1,4 +1,5 @@
 
+
 import Coin from "./Coin";
 import Position from "./Position";
 
@@ -48,7 +49,7 @@ export default class Board
         {
             this.add(new Position(posID));
 
-            if(this.occupiedPosIDs.includes(i))
+            if(this.occupiedPosIDs.includes(posID))
                 this.addCoinTo(posID, ++coinID);
         }
     }
