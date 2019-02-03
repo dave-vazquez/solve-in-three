@@ -1,8 +1,9 @@
 # solve-in-three
 
 A coin-puzzle game where you are challenged to arrange a set of six coins into the shape of a ring following two simple rules. There are many ways to solve this puzzle, but only one way to solve it in three moves.
-![Solve-In-Three](intro.gif)
 </br>
+![Solve-In-Three](intro.gif)
+
 </br>
 <p>Rule 1) <strong>You can only move a coin where it is adjacent to two or more coins.</strong></p>
 
