@@ -1,5 +1,3 @@
-console.log('index.js');
-
 import $ from 'jquery';
 import {elements} from './views/base.js';
 import {animateIntro} from './transitions/intro-2.js';
