@@ -1,5 +1,3 @@
-console.log('messageView.js');
-
 import $ from 'jquery';
 import {elements} from './base.js';
 
