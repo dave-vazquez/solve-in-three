@@ -11,7 +11,7 @@ A coin-puzzle game where you are challenged to arrange a set of six coins into t
 
 ![Solve-In-Three](rule-2.gif)
 
-<p><strong>Enable hints if you get stuck!</p> 
+<p><strong>If your stuck, enable hints to show available positions you can move to!</p> 
 
 ![Solve-In-Three](hints.gif)
   
