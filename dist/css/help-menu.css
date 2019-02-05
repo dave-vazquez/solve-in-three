@@ -141,12 +141,10 @@
     cursor: url('../../images/right.png'), e-resize;
 }
 
-.page-selector
+.help-menu-bottom
 {
-    
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 200px;
+    height: 25px;
+
 
     background-color: #c2c2c2;
 
@@ -155,24 +153,29 @@
     border-radius: 0 0 10px 10px;
 }
 
-.page-button
+.page-dots
 {
-    opacity: 0;
-    
-    width: 15px;
-    
-    border-radius: 50%;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
 
-    border-color: rgb(133, 131, 131);
-
-    margin-right: 20px;
-
-    background-color: rgba(111, 173, 224, 0.9);
+    margin-top: 8px;
 }
 
-#page-1
-{
-    background-color: #2a7cb3;
+.page-dot
+{    
+    float: left;
+
+    width: 10px;
+    height: 10px;
+
+    margin: 0 15px;
+
+    border-radius: 50%;
+
+    border: 1px solid black;
+
+    background-color: #6fade0;
 }
 
 .page-button:focus, #return-button:focus
