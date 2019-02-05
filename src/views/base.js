@@ -80,6 +80,7 @@ export const elements =
     pageContainer: document.getElementById('page-container'),
     pageLeft: document.getElementById('page-left'),
     pageRight: document.getElementById('page-right'),
+    pageDot: id => document.getElementById(`page-${id}`),
 
     objectiveContainer: document.getElementById('objective-container'),
     objectiveSummary: document.getElementById('objective-summary'),
@@ -165,17 +166,6 @@ export const elements =
                                     
                                       this.progressContinueButton = document.getElementById('continue-button'); 
                                       break;
-            
-            case('help-menu'): this.objectiveContainer = document.getElementById('objective-container');
-                               this.rule1Container = document.getElementById('rule-1-container');
-                               this.rule2Container = document.getElementById('rule-2-container');
-                               this.numberphileContainer = document.getElementById('numberphile-container'); 
-                               
-                               this.helpButton = document.getElementById('help-button');
-                               this.pageLeft = document.getElementById('page-left');
-                               this.pageRight = document.getElementById('page-right'); 
-                               break;
-
         }
     },
 
