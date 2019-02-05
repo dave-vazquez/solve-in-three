@@ -41,8 +41,8 @@
             <div id="attempts-container" class="icon"><img id="attempt-icon" src="./images/attempts-black.png" alt="Attempts">
                 <div id="attempts">0</div>
                 <div id="attempts-message-container">
-                    <p id="attempts-msg-0" class="attempts-msg">Every solve greater than three moves,</p> 
-                    <p id="attempts-msg-1" class="attempts-msg">is recorded as an attempt.</p>
+                    <p id="attempts-msg-0" class="attempts-msg">Every solve greater than three moves</p> 
+                    <p id="attempts-msg-1" class="attempts-msg">is counted as an attempt.</p>
                 </div>
             </div>
             
@@ -132,7 +132,74 @@
     </div>
 
     <div id="progress-message-container"></div>
-    <div id="help-container"></div>
+    <div id="help-container">
+        <div id="help-title-container">
+            <h2 id="help-title">Solve In Three</h2>
+            <p  id="help-sub-title-0" class="help-sub-title">Help Menu</p>
+            <p  id="help-sub-title-1" class="help-sub-title">Rule 1</p>
+            <p  id="help-sub-title-2" class="help-sub-title">Rule 2</p>
+        </div>
+
+        <div id="page-container">
+
+            <div id="page-left"></div>
+            <div id="page-right"></div>
+
+            <div id="objective-container">
+                <div id="objective-summary">
+                    <p id="objective-msg-0">The goal of this puzzle is to arrange the <strong>six coins</strong></p>
+                    <p id="objective-msg-0">into the <strong>shape of a ring</strong>.</p></br>
+                    <p id="objective-msg-2">There are <strong>many ways</strong> to solve this puzzle,</p>
+                    <p id="objective-msg-3">but only one way to solve it in <strong>three moves</strong>.</p></br>
+                    <p><strong>Solve in three</strong> with the <strong>fewest number of attempts</strong>,</p>
+                    <p>and the <strong>shortest amount of time</strong>.</p>
+                </div>
+                <div id="objective-img-container">
+                    <img id="objective-img" src="images/objective.gif">
+                </div>
+            </div>
+
+            <div id="rule-1-container">
+                <div id="rule-1-summary">
+                    <p id="rule-1-msg-0">A coin can only move to a position</p>
+                    <p id="rule-1-msg-1">where it will touch <strong>two or more coins</strong></p></br> 
+                    <div class="rule-1-img-container">
+                        <img id="rule-1-img" src="images/rule-1a-320.gif">
+                    </div>   
+                </div>
+            </div>
+
+            <div id="rule-2-container">
+                <div id="rule-2-summary">
+                    <p id="rule-2-msg-0">A coin cannot move</p> 
+                    <p id="rule-2-msg-1">if it is <strong>blocked</strong> by its <strong>surrounding coins</strong>.</p></br>
+                    <div class="rule-2-img-container">
+                        <img id="rule-2-img" src="images/rule-2-320.gif">
+                    </div>   
+                </div>
+            </div>
+
+            <div id="numberphile-container">
+                <div id="numberphile-summary">
+                    <p id="numberphile-msg-0">This project was inspired by the same puzzle</p>
+                    <p id="numberphile-msg-1">featured in the <img id="numberphile-img" src="images/numberphile.png"> video:</p></br>
+                    <p id="numberphile-msg-3"><strong>"The Coin Hexagon"</strong></p></br> 
+                    <iframe id="numberphile-video" width="350" height="198" src="https://www.youtube.com/embed/_pP_C7HEy3g" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></br></br>
+                    <p id="warning-msg"><strong>Warning</strong>: The solution to this puzzle can be found in this video</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="help-menu-bottom">
+            <div class="page-dots">
+                <div id="page-0" class="page-dot"></div>
+                <div id="page-1" class="page-dot"></div>
+                <div id="page-2" class="page-dot"></div>
+                <div id="page-3" class="page-dot"></div>
+            </div>
+        </div>
+    </div>
     
     <script src="dist/main.js"></script>
 
