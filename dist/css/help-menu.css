@@ -57,7 +57,7 @@
     display: block;
 }
 
-#rule-1-container, #rule-2-container, #numberphile-container
+#objective-container, #rule-1-container, #rule-2-container, #numberphile-container
 {
    display: none;
 }
@@ -69,13 +69,18 @@
     text-align: center;
 }
 
-#objective-img-container, #rule-1-img-container, #rule-2-img-container
+#four-move-msg, #three-move-msg
+{
+    text-align: center;
+}
+
+#objective-img-container, #rule-1-img-container, #rule-2-img-container, #three-move-img-container, #four-move-img-container
 {   
     padding-left: 110px;
     padding-bottom: 10px;
 }
 
-#objective-img, #rule-1-img, #rule-2-img
+#objective-img, #rule-1-img, #rule-2-img, #three-move-img, #four-move-img 
 {  
     width: 270px;
     height: auto;
