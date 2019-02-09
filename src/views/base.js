@@ -82,6 +82,9 @@ export const elements =
     pageRight: document.getElementById('page-right'),
     pageDot: id => document.getElementById(`page-${id}`),
 
+    solutionContainer: document.getElementById('solution-container'),
+
+    
     objectiveContainer: document.getElementById('objective-container'),
     objectiveSummary: document.getElementById('objective-summary'),
     objMessages: document.querySelectorAll('#objective-summary > p'),
