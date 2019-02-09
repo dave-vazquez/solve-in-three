@@ -301,6 +301,8 @@ export const animateIntro = () =>
     highlightCoin(136500, 4, 'light');
     highlightCoin(136500, 5, 'light');
     
+    lambdaAlert(138000);
+    
     enableAll(138500);
    
 }
@@ -308,6 +310,22 @@ export const animateIntro = () =>
 /* *************************************************************************************************** */
 /*                                        ANIMATION FUNCTIONS                                          */
 /* *************************************************************************************************** */
+
+const lambdaAlert = start =>
+{
+    setTimeout(() => 
+    {
+        alert(`Hi Lambda School,
+
+To experience the entire scope of this project, I've provided two, 
+simple solutions to progress the puzzle forward when needed. 
+
+They can be found by clicking the "?" button at the right of the top panel:
+
+    1) A four-move solution to progress the puzzle forward.
+    2) The three-move solution to solve and end the puzzle.`);   
+    }, start);
+}
 
 const renderIntroMessages = start =>
 {
