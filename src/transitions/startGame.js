@@ -34,26 +34,8 @@ export const startGame = ()=>
     highlightCoin(10800, 3, 'light');
     highlightCoin(10800, 4, 'light');
     highlightCoin(10800, 5, 'light');
-    
-    lambdaAlert(11800);
 
     enableAll(12300);
-}
-
-const lambdaAlert = start =>
-{
-    setTimeout(() => 
-    {
-        alert(`Hi Lambda School,
-
-To experience the entire scope of this project, I've provided two, 
-simple solutions to progress the puzzle forward when needed. 
-
-They can be found by clicking the "?" button at the right of the top panel:
-
-    1) A four-move solution to progress the puzzle forward.
-    2) The three-move solution to solve and end the puzzle.`);   
-    }, start);
 }
 
 const renderIntroMessage = start =>
