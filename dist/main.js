@@ -492,5 +492,3 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ })
 
 /******/ });
-
-//end
