@@ -9,8 +9,8 @@ export default class HelpView
 {
     constructor()
     {
-        this.helpMenuPages = [elements.solutionContainer, elements.objectiveContainer, elements.rule1Container, elements.rule2Container, elements.numberphileContainer];;
-        this.numPages = 5;
+        this.helpMenuPages = [elements.objectiveContainer, elements.rule1Container, elements.rule2Container, elements.numberphileContainer];;
+        this.numPages = 4;
         this.pageNum = 0;
     }
 
@@ -118,5 +118,6 @@ function closeHelpMenu(evt)
         helpView.closeHelpMenu();
     }
 }
+
 
 
