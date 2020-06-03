@@ -10,7 +10,7 @@
   "author": "David M. Vazquez",
   "license": "ISC",
   "dependencies": {
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "jquery-shadow-animation": "^1.10.0",
     "jquery-ui": "^1.12.1",
     "webpack-livereload-plugin": "^2.2.0"
